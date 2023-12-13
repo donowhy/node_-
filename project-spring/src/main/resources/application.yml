@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  datasource:
+    # datasource 설정은 각자의 환경에 맞게 변경
+    url: jdbc:mysql://localhost:3306/springdata
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+
+jwt:
+  password: demoversiondemoversiondemoversiondemoversion
+  atk: 86400000 # 24 * 60 * 60 * 1000L; ???? ??? ?
+  rtk: 2592000000 # 30 * 24 * 60 * 60 * 1000L; ???? ??? ?

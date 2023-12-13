@@ -1,0 +1,96 @@
+package toyproject.todoList.domain.todo.service;
+
+import toyproject.todoList.domain.member.entity.Member;
+import toyproject.todoList.domain.member.repository.MemberRepository;
+import toyproject.todoList.domain.todo.dto.*;
+import toyproject.todoList.domain.todo.entity.TodoList;
+import toyproject.todoList.domain.todo.entity.enumType.Important;
+import toyproject.todoList.domain.todo.repository.TodoRepository;
+import toyproject.todoList.global.error.ErrorCode;
+import toyproject.todoList.global.exception.BusinessException;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+@Transactional
+public class TodoService {
+
+    private final TodoRepository todoRepository;
+    private final MemberRepository memberRepository;
+
+    public void saveTodayTodo(TodoSaveRequest request, Long id) {
+        Member member = member(id);
+
+        todoRepository.save(TodoList.builder()
+                .content(request.getContent())
+                .important(request.getImportant())
+                .checked(false)
+                .member(member)
+                .build()
+        );
+    }
+
+    public void changeTodoState(DoneMyTodoRequest request, Long id) {
+        Member member = member(id);
+
+        List<TodoList> todoList = member.getTodoList();
+
+        for (TodoList list : todoList) {
+            isValid(list, list.getContent(), list.getImportant());
+            if (request.getLocalDate() == list.getCreateTime().toLocalDate()) {
+                list.setCheckTodo();
+            }
+        }
+    }
+
+    private void isValid(TodoList list, String content, Important important) {
+        if (!list.getContent().equals(content) || !list.getImportant().equals(important)) {
+            throw new BusinessException(ErrorCode.NOT_EXISTS_DIGITAL_PRODUCT);
+        }
+    }
+
+    public void delete(TodoDeleteRequest request, Long id) {
+        Member member = member(id);
+        List<TodoList> todoList = member.getTodoList();
+
+        for (TodoList list : todoList) {
+            isValid(list, list.getContent(), list.getImportant());
+            if (request.getLocalDate() == list.getCreateTime().toLocalDate()) {
+                todoRepository.delete(list);
+            }
+        }
+
+    }
+
+    public List<DetailTodoResponse> getTodoToday(TodoTodaysRequest request, Long id) {
+        Member member = member(id);
+
+        List<TodoList> todoList = member.getTodoList();
+
+        List<DetailTodoResponse> response = new ArrayList<>();
+
+        for (TodoList list : todoList) {
+            if (list.getCreateTime().toLocalDate() == request.getLocalDate()) {
+                response.add(DetailTodoResponse.builder()
+                        .content(list.getContent())
+                        .important(list.getImportant().toString())
+                        .localDate(list.getCreateTime().toLocalDate())
+                        .build());
+            }
+        }
+
+        return response;
+    }
+
+
+
+    private Member member(Long id) {
+        return memberRepository.findById(id).orElseThrow(()
+                -> new BusinessException(ErrorCode.NOT_EXISTS_USER_ID));
+    }
+}
