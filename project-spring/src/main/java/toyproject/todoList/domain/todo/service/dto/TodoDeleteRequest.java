@@ -1,4 +1,4 @@
-package toyproject.todoList.domain.todo.dto;
+package toyproject.todoList.domain.todo.service.dto;
 
 import toyproject.todoList.domain.todo.entity.enumType.Important;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
-public class TodoSaveRequest {
+public class TodoDeleteRequest {
 
     private String content;
 

@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8083
   servlet:
     context-path: /
     encoding:
@@ -10,8 +10,8 @@ server:
 spring:
   datasource:
     # datasource 설정은 각자의 환경에 맞게 변경
-    url: jdbc:mysql://localhost:3306/springdata
-    username: root
+    url: jdbc:mysql://localhost:3306/backend
+    username: user01
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:

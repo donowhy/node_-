@@ -1,4 +1,4 @@
-package toyproject.todoList.domain.todo.dto;
+package toyproject.todoList.domain.todo.service.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,13 @@
 package toyproject.todoList.domain.todo.repository;
 
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import toyproject.todoList.domain.todo.entity.TodoList;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TodoRepository extends JpaRepository<TodoList, Long> {
+import java.time.LocalDate;
+import java.util.List;
+
+public interface TodoRepository extends JpaRepository<TodoList, Long>, TodoCustomRepository {
+
 }

@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,6 +26,8 @@ public class TodoList extends BaseTimeEntity {
     private Important important;
 
     private boolean checked;
+
+    private LocalDate localDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;

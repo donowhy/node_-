@@ -2,7 +2,8 @@ package toyproject.todoList.domain.todo.service;
 
 import toyproject.todoList.domain.member.entity.Member;
 import toyproject.todoList.domain.member.repository.MemberRepository;
-import toyproject.todoList.domain.todo.dto.*;
+import toyproject.todoList.domain.todo.repository.TodoCustomRepository;
+import toyproject.todoList.domain.todo.service.dto.*;
 import toyproject.todoList.domain.todo.entity.TodoList;
 import toyproject.todoList.domain.todo.entity.enumType.Important;
 import toyproject.todoList.domain.todo.repository.TodoRepository;
@@ -12,6 +13,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,24 +69,9 @@ public class TodoService {
 
     }
 
-    public List<DetailTodoResponse> getTodoToday(TodoTodaysRequest request, Long id) {
+    public List<DetailTodoResponse> getTodoToday(LocalDate startdate, LocalDate endDate, Long id) {
         Member member = member(id);
-
-        List<TodoList> todoList = member.getTodoList();
-
-        List<DetailTodoResponse> response = new ArrayList<>();
-
-        for (TodoList list : todoList) {
-            if (list.getCreateTime().toLocalDate() == request.getLocalDate()) {
-                response.add(DetailTodoResponse.builder()
-                        .content(list.getContent())
-                        .important(list.getImportant().toString())
-                        .localDate(list.getCreateTime().toLocalDate())
-                        .build());
-            }
-        }
-
-        return response;
+        return todoRepository.getTodoToday(startdate, endDate, id);
     }
 
 
