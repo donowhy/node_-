@@ -1,4 +1,4 @@
-export class CreateTodoDTO {
+export class CreateTodoDto {
     content;
     important;
     local_date; // 수정된 부분

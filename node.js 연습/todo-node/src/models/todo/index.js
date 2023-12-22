@@ -1,2 +1,1 @@
-export { default as TodoController } from "./controller";
-export * as TodoListSwagger from "./swagger";
+export { default as TodoController } from "./controller/TodoController";
