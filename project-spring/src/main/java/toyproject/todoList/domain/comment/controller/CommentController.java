@@ -23,7 +23,7 @@ public class CommentController {
     }
 
     @DeleteMapping("/comment/delete")
-    public void deleteComment(Long commentId, @MemberInfo MembersInfo membersInfo) {
+    public void deleteComment(Integer commentId, @MemberInfo MembersInfo membersInfo) {
         commentService.deleteComment(commentId, membersInfo.getId());
 
     }

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface TodoCustomRepository {
 
-    List<DetailTodoResponse> getTodoToday(@Param("startdate") LocalDate startdate,@Param("enddate") LocalDate endDate,@Param("id") Long id);
+    List<DetailTodoResponse> getTodoToday(@Param("startdate") LocalDate startdate,@Param("enddate") LocalDate endDate,@Param("id") Integer id);
 }

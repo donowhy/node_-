@@ -23,7 +23,7 @@ public class LikePostService {
     private final PostRepository postRepository;
     private final MemberRepository memberRepository;
 
-    public void likePost(Long id, Long memberId){
+    public void likePost(Integer id, Integer memberId){
         Member member = memberRepository.findById(memberId).orElseThrow();
 
         Post post = postRepository.findById(id).orElseThrow();
@@ -36,7 +36,7 @@ public class LikePostService {
         likePostRepository.save(build);
     }
 
-    public void deleteLike(Long id, Long memberId){
+    public void deleteLike(Integer id, Integer memberId){
         Member member = memberRepository.findById(memberId).orElseThrow();
         Post post = postRepository.findById(id).orElseThrow();
 

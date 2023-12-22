@@ -40,7 +40,7 @@ public class MemberController {
     @SecurityRequirement(name = "Bearer Authentication")
     @Operation(summary = "나의 정보 조회", description = "나의 정보 조회, 토큰만 넣으면 됨.", tags = { "Member Controller" })
     @GetMapping("/info/{id}")
-    public MemberResponse getMemberInfo (@MemberInfo MembersInfo membersInfo, @PathVariable("id") Long id) throws Exception {
+    public MemberResponse getMemberInfo (@MemberInfo MembersInfo membersInfo, @PathVariable("id") Integer id) throws Exception {
         return memberService.getMemberInfo(membersInfo.getId(), id);
     }
 

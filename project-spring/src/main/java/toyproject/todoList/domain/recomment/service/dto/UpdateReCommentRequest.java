@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class UpdateReCommentRequest {
-    private Long reCommentId;
+    private Integer reCommentId;
     private String content;
 
 }

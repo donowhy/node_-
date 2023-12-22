@@ -25,7 +25,7 @@ public class CommentService {
     private final PostRepository postRepository;
     private final MemberRepository memberRepository;
 
-    public void saveComment(SaveCommentRequest request, Long id) {
+    public void saveComment(SaveCommentRequest request, Integer id) {
         Member member = memberRepository.findById(id).orElseThrow();
         Post post = postRepository.findById(request.getPostId()).orElseThrow();
         commentRepository.save(Comment.builder()
@@ -35,7 +35,7 @@ public class CommentService {
                 .build());
     }
 
-    public void deleteComment(Long commentId, Long memberId) {
+    public void deleteComment(Integer commentId, Integer memberId) {
         Comment comment = commentRepository.findById(commentId).orElseThrow();
         if (Objects.equals(comment.getMember().getId(), memberId)) {
             commentRepository.delete(comment);
@@ -43,7 +43,7 @@ public class CommentService {
         else throw new IllegalArgumentException();
     }
 
-    public void updateComment (UpdateCommentRequest request, Long memberId){
+    public void updateComment (UpdateCommentRequest request, Integer memberId){
         Comment comment = commentRepository.findById(request.getCommentId()).orElseThrow();
         if (Objects.equals(comment.getMember().getId(), memberId)) {
             comment.setCommnet(request.getContent());

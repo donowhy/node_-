@@ -4,26 +4,24 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export class RegisterDTO {
-  name;
-  email;
-  phoneNumber;
-  password;
-  description;
+    loginId;
+    nickname;
+    email;
+    password;
 
-  constructor(props) {
-    this.name = props.name;
-    this.email = props.email;
-    this.phoneNumber = props.phoneNumber;
-    this.password = props.password;
-    this.description = props.description;
-  }
+    constructor(member) {
+        this.loginId = member.loginId;
+        this.nickname = member.nickname;
+        this.email = member.email;
+        this.password = member.password;
+    }
 
-  async hashPassword() {
-    const hashedPassword = await bcrypt.hash(
-      this.password,
-      Number(process.env.PASSWORD_SALT)
-    );
+    async hashPassword() {
+        const hashedPassword = await bcrypt.hash(
+            this.password,
+            Number(process.env.PASSWORD_SALT)
+        );
 
-    return hashedPassword;
-  }
+        return hashedPassword;
+    }
 }

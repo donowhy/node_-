@@ -10,6 +10,6 @@ import lombok.*;
 @ToString
 public class MembersInfo {
 
-    private Long id;
+    private Integer id;
     private String username;
 }

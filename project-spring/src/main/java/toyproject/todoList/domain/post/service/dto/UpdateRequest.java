@@ -13,5 +13,5 @@ public class UpdateRequest {
     private String title;
     private String content;
     private List<String> tags;
-    private Long postId;
+    private Integer postId;
 }

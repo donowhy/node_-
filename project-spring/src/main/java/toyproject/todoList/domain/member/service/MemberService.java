@@ -43,7 +43,7 @@ public class MemberService {
 
 
     // 유저 정보 조회
-    public UserResponse getMyInfo(Long id) {
+    public UserResponse getMyInfo(Integer id) {
         Member member = memberRepository.findById(id).orElseThrow(() ->
                 new BusinessException(ErrorCode.NOT_EXISTS_USER_ID)
         );
@@ -54,7 +54,7 @@ public class MemberService {
             postDtos.add(MemberResponse.PostDto.builder()
                     .title(post.getTitle())
                     .likes(post.getLikes().size())
-                    .views(post.getViews().size())
+                    .views(post.getViews())
                     .build());
         }
 
@@ -91,7 +91,7 @@ public class MemberService {
     }
 
     // 닉네임 변경
-    public UpdateUserResponseDto updateNickname(UpdateUserRequestDto updateUserRequestDto, Long id) {
+    public UpdateUserResponseDto updateNickname(UpdateUserRequestDto updateUserRequestDto, Integer id) {
         Member member = memberRepository.findById(id).orElseThrow(() ->
                 new BusinessException(ErrorCode.NOT_EXISTS_USER_ID)
         );
@@ -105,7 +105,7 @@ public class MemberService {
     }
 
     // 유저 삭제
-    public void deleteUser(Long id) {
+    public void deleteUser(Integer id) {
 
         Member member = memberRepository.findById(id).orElseThrow(()
                 -> new BusinessException(ErrorCode.NOT_EXISTS_USER_ID));
@@ -114,7 +114,7 @@ public class MemberService {
 
 
     // 유저 accessToken 재발급
-    public AccessTokenResponse getAccessToken(AccessTokenRequest request, Long id) {
+    public AccessTokenResponse getAccessToken(AccessTokenRequest request, Integer id) {
 
         Member member = memberRepository.findById(id).orElseThrow(()
                 -> new BusinessException(ErrorCode.NOT_EXISTS_USER_ID));
@@ -132,7 +132,7 @@ public class MemberService {
     }
 
     // 비밀번호 변경
-    public void changeMyPassword(Long id, ChangeMyPasswordRequestDto requestDto) {
+    public void changeMyPassword(Integer id, ChangeMyPasswordRequestDto requestDto) {
         Member member = memberRepository.findById(id).orElseThrow(() ->
                 new BusinessException(ErrorCode.NOT_EXISTS_USER_ID)
         );
@@ -150,7 +150,7 @@ public class MemberService {
     }
 
     // 공개여부 변경
-    public void changePrivacy (Long id){
+    public void changePrivacy (Integer id){
         Member member = memberRepository.findById(id).orElseThrow(() ->
                 new BusinessException(ErrorCode.NOT_EXISTS_USER_ID)
         );
@@ -159,7 +159,7 @@ public class MemberService {
     }
 
     // 회원 정보 조회
-    public MemberResponse getMemberInfo(Long myId, Long memberId) throws Exception {
+    public MemberResponse getMemberInfo(Integer myId, Integer memberId) throws Exception {
         Member member = memberRepository.findById(myId).orElseThrow(() ->
                 new BusinessException(ErrorCode.NOT_EXISTS_USER_ID)
         );
@@ -174,7 +174,7 @@ public class MemberService {
             postDtos.add(MemberResponse.PostDto.builder()
                             .title(post.getTitle())
                             .likes(post.getLikes().size())
-                            .views(post.getViews().size())
+                            .views(post.getViews())
                     .build());
         }
 

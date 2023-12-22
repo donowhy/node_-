@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import toyproject.todoList.domain.todo.entity.enumType.Important;
 
 import java.time.LocalDate;
 
@@ -15,7 +16,7 @@ public class DetailTodoResponse {
 
     private String content;
 
-    private String important;
+    private Important important;
 
     private LocalDate localDate;
 }

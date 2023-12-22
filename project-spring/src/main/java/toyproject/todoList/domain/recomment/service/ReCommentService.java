@@ -29,7 +29,7 @@ public class ReCommentService {
     private final CommentRepository commentRepository;
     private final MemberRepository memberRepository;
 
-    public void saveReComment(SaveReCommentRequest request, Long id) {
+    public void saveReComment(SaveReCommentRequest request, Integer id) {
         Member member = memberRepository.findById(id).orElseThrow();
 
         reCommentRepository.save(ReComment.builder()
@@ -39,7 +39,7 @@ public class ReCommentService {
                         .build());
     }
 
-    public void deleteReComment(Long reCommentId, Long memberId) {
+    public void deleteReComment(Integer reCommentId, Integer memberId) {
         ReComment reComment = reCommentRepository.findById(reCommentId).orElseThrow();
         if (Objects.equals(reComment.getMember().getId(), memberId)) {
             reCommentRepository.delete(reComment);
@@ -47,7 +47,7 @@ public class ReCommentService {
         else throw new IllegalArgumentException();
     }
 
-    public void updateReComment (UpdateReCommentRequest request, Long memberId){
+    public void updateReComment (UpdateReCommentRequest request, Integer memberId){
         ReComment reComment = reCommentRepository.findById(request.getReCommentId()).orElseThrow();
         if (Objects.equals(reComment.getMember().getId(), memberId)) {
             reComment.setReComment(request.getContent());

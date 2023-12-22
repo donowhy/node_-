@@ -14,12 +14,12 @@ public class LikePostController {
 
 
     @PostMapping("/{id}")
-    public void likePost(@PathVariable("id") Long id, @MemberInfo MembersInfo membersInfo) {
+    public void likePost(@PathVariable("id") Integer id, @MemberInfo MembersInfo membersInfo) {
         likePostService.likePost(id, membersInfo.getId());
     }
 
     @DeleteMapping("/{id}")
-    public void deleteLike(@PathVariable("id") Long id, @MemberInfo MembersInfo membersInfo) {
+    public void deleteLike(@PathVariable("id") Integer id, @MemberInfo MembersInfo membersInfo) {
         likePostService.deleteLike(id, membersInfo.getId());
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
-public interface MemberRepository extends JpaRepository<Member, Long> {
+public interface MemberRepository extends JpaRepository<Member, Integer> {
 
     Optional<Member> findByEmail(String email);
 
@@ -28,16 +28,16 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query("select count(*) " +
             "from Post p left join p.member m " +
             "where m.id = :id")
-    int postsCounter (@Param("id") Long id);
+    int postsCounter (@Param("id") Integer id);
 
     @Query("select count(c) " +
             "from Post p " +
             "join p.comments c " +
             "where p.member.id = :id")
-    int commentsCounter(@Param("id") Long id);
+    int commentsCounter(@Param("id") Integer id);
 
 
     @Query("select p from Post p where p.member.id = :id")
-    List<Post> findPosts(@Param("id") Long id);
+    List<Post> findPosts(@Param("id") Integer id);
 
 }

@@ -21,7 +21,7 @@ public class Comment extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(length = 300)
     private String content;
@@ -36,7 +36,7 @@ public class Comment extends BaseTimeEntity {
     private List<ReComment> reCommentList;
 
     @Builder
-    public Comment(Long id, String content, Post post, Member member, List<ReComment> reCommentList) {
+    public Comment(Integer id, String content, Post post, Member member, List<ReComment> reCommentList) {
         this.id = id;
         this.content = content;
         this.post = post;

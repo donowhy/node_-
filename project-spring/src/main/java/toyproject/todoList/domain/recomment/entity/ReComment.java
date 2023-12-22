@@ -17,7 +17,7 @@ public class ReComment extends BaseTimeEntity {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
 
     @ManyToOne(fetch = LAZY)
     private Comment comment;
@@ -28,7 +28,7 @@ public class ReComment extends BaseTimeEntity {
     private String content;
 
     @Builder
-    public ReComment(Long id, Comment comment, Member member, String content) {
+    public ReComment(Integer id, Comment comment, Member member, String content) {
         this.id = id;
         this.comment = comment;
         this.member = member;

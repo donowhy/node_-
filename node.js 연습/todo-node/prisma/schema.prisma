@@ -1,0 +1,129 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model comment {
+  id          Int          @id @default(autoincrement())
+  create_time DateTime?    @db.DateTime(6)
+  update_time DateTime?    @db.DateTime(6)
+  content     String?      @db.VarChar(300)
+  member_id   Int?
+  post_id     Int?
+  member      member?      @relation(fields: [member_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FKmrrrpi513ssu63i2783jyiv9m")
+  post        post?        @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "FKs1slvnkuemjsq2kj4h3vhx7i1")
+  re_comment  re_comment[]
+
+  @@index([member_id], map: "FKmrrrpi513ssu63i2783jyiv9m")
+  @@index([post_id], map: "FKs1slvnkuemjsq2kj4h3vhx7i1")
+}
+
+model like_post {
+  id          Int       @id @default(autoincrement())
+  create_time DateTime? @db.DateTime(6)
+  update_time DateTime? @db.DateTime(6)
+  member_id   Int?
+  post_id     Int?
+  member      member?   @relation(fields: [member_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK8lfhuvygx5i5c4tl2rdt26x5a")
+  post        post?     @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "FKnu91sbh82a5nj1o3xh0sgwhu8")
+
+  @@index([member_id], map: "FK8lfhuvygx5i5c4tl2rdt26x5a")
+  @@index([post_id], map: "FKnu91sbh82a5nj1o3xh0sgwhu8")
+}
+
+model member {
+  id            Int          @id @default(autoincrement())
+  create_time   DateTime?    @db.DateTime(6)
+  update_time   DateTime?    @db.DateTime(6)
+  email         String?      @unique(map: "UK_mbmcqelty0fbrvxp1q58dn57t") @db.VarChar(30)
+  login_id      String?      @db.VarChar(255)
+  nickname      String?      @db.VarChar(255)
+  open_privacy  Boolean?     @db.Bit(1)
+  password      String?      @db.VarChar(255)
+  refresh_token String?      @db.VarChar(255)
+  role          member_role?
+  comment       comment[]
+  like_post     like_post[]
+  post          post[]
+  re_comment    re_comment[]
+  todo_list     todo_list[]
+}
+
+model post {
+  id          Int          @id @default(autoincrement())
+  create_time DateTime?    @db.DateTime(6)
+  update_time DateTime?    @db.DateTime(6)
+  content     String?      @db.VarChar(255)
+  title       String?      @db.VarChar(255)
+  member_id   Int?
+  views       Int?
+  comment     comment[]
+  like_post   like_post[]
+  member      member?      @relation(fields: [member_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK83s99f4kx8oiqm3ro0sasmpww")
+  post_views  Int? 
+  tag         tag[]
+
+  @@index([member_id], map: "FK83s99f4kx8oiqm3ro0sasmpww")
+}
+
+
+model re_comment {
+  id          Int       @id @default(autoincrement())
+  create_time DateTime? @db.DateTime(6)
+  update_time DateTime? @db.DateTime(6)
+  content     String?   @db.VarChar(255)
+  comment_id  Int?
+  member_id   Int?
+  comment     comment?  @relation(fields: [comment_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FKlbau13r2qs2dvla5g9k3xnmpd")
+  member      member?   @relation(fields: [member_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FKms7gkd2nc6dils5db35qvqor0")
+
+  @@index([comment_id], map: "FKlbau13r2qs2dvla5g9k3xnmpd")
+  @@index([member_id], map: "FKms7gkd2nc6dils5db35qvqor0")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model re_comment_seq {
+  next_val BigInt?
+
+  @@ignore
+}
+
+model tag {
+  id          Int       @id @default(autoincrement())
+  create_time DateTime? @db.DateTime(6)
+  update_time DateTime? @db.DateTime(6)
+  name        String?   @db.VarChar(255)
+  post_id     Int?
+  post        post?     @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "FK7tk5hi5tl1txftyn44dtq2mv6")
+
+  @@index([post_id], map: "FK7tk5hi5tl1txftyn44dtq2mv6")
+}
+
+model todo_list {
+  id          Int                  @id @default(autoincrement())
+  create_time DateTime?            @db.DateTime(6)
+  update_time DateTime?            @db.DateTime(6)
+  checked     Boolean              @db.Bit(1)
+  content     String?              @db.VarChar(255)
+  important   todo_list_important?
+  local_date  DateTime?            @db.Date
+  member_id   Int?
+  member      member?              @relation(fields: [member_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FKph20e6k3bsy42swcbrxycll4")
+
+  @@index([member_id], map: "FKph20e6k3bsy42swcbrxycll4")
+}
+
+enum todo_list_important {
+  HIGH
+  LOW
+  MIDDLE
+}
+
+enum member_role {
+  ADMIN
+  USER
+}

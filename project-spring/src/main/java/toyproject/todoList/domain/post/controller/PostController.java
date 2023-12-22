@@ -33,12 +33,12 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
-    public GetOnePostResponse getOnePost (@PathVariable("id") Long id, @MemberInfo(required = false) MembersInfo memberInfo) {
+    public GetOnePostResponse getOnePost (@PathVariable("id") Integer id, @MemberInfo(required = false) MembersInfo memberInfo) {
         return postService.getOnePost(id, memberInfo.getId());
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deletePost(@PathVariable("id") Long id, @MemberInfo MembersInfo membersInfo){
+    public void deletePost(@PathVariable("id") Integer id, @MemberInfo MembersInfo membersInfo){
         postService.deletePost(id, membersInfo.getId());
     }
 }

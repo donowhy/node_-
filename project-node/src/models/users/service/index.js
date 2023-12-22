@@ -1,99 +1,108 @@
 import database from "../../../database";
 
-export class UserService {
-  // findById, findMany, create, update, delete
+export class MemberService {
+    // findById, findMany, create, update, delete
 
-  async checkUserByEmail(email) {
-    const user = await database.user.findUnique({
-      where: {
-        email,
-      },
-    });
+    async checkMemberByEmail(email) {
+        const member = await database.member.findUnique({
+            where: {
+                email,
+            },
+        });
 
-    if (!user) return false;
+        if (!member) return false;
 
-    return user;
-  }
-
-  async findUserById(id) {
-    const user = await database.user.findUnique({
-      where: {
-        id,
-      },
-    });
-
-    if (!user) throw { status: 404, message: "유저를 찾을 수 없습니다." };
-    return user;
-  }
-
-  async findUsers({ skip, take }) {
-    const users = await database.user.findMany({
-      where: {},
-      skip,
-      take,
-    });
-
-    const count = await database.user.count();
-
-    return {
-      users,
-      count,
-    };
-  }
-
-  async createUser(props) {
-    const newUser = await database.user.create({
-      data: {
-        name: props.name,
-        email: props.email,
-        phoneNumber: props.phoneNumber,
-        password: props.password,
-        description: props.description,
-      },
-    });
-
-    return newUser.id;
-  }
-
-  async updateUser(id, props) {
-    const isExist = await database.user.findUnique({
-      where: {
-        id,
-      },
-    });
-
-    if (!isExist) throw { status: 404, message: "유저를 찾을 수 없습니다." };
-    if (props.password) {
-      await props.updatePassword();
+        return member;
     }
 
-    await database.user.update({
-      where: {
-        id: isExist.id,
-      },
-      data: {
-        name: props.name,
-        email: props.email,
-        phoneNumber: props.phoneNumber,
-        password: props.password,
-        description: props.description,
-      },
-    });
-  }
+    async findMemberById(id) {
+        const member = await database.member.findUnique({
+            where: {
+                id,
+            },
+        });
 
-  async deleteUser(id) {
-    const isExist = await database.user.findUnique({
-      where: {
-        id,
-      },
-    });
+        if (!member) throw { status: 404, message: "유저를 찾을 수 없습니다." };
+        return member;
+    }
 
-    if (!isExist) throw { status: 404, message: "유저를 찾을 수 없습니다." };
+    async findMembers({ skip, take }) {
+        const members = await database.member.findMany({
+            where: {},
+            skip,
+            take,
+        });
 
-    await database.user.delete({
-      where: {
-        id: isExist.id,
-      },
-    });
-  }
+        const count = await database.member.count();
+
+        return {
+            members,
+            count,
+        };
+    }
+
+    async createMember(props) {
+        const newMember = await database.member.create({
+            data: {
+                login_id: props.loginId,
+                email: props.email,
+                nickname: props.nickname,
+                open_privacy: false,
+                password: props.password,
+                create_time: getCurrentTimeFormatted(),
+                update_time: getCurrentTimeFormatted(),
+            },
+        });
+
+        return newMember.id;
+    }
+
+    async updateMember(id, props) {
+        const isExist = await database.member.findUnique({
+            where: {
+                id,
+            },
+        });
+
+        if (!isExist)
+            throw { status: 404, message: "유저를 찾을 수 없습니다." };
+        if (props.password) {
+            await props.updatePassword();
+        }
+
+        await database.member.update({
+            where: {
+                id: isExist.id,
+            },
+            data: {
+                name: props.name,
+                email: props.email,
+                phoneNumber: props.phoneNumber,
+                password: props.password,
+                description: props.description,
+            },
+        });
+    }
+
+    async deleteMember(id) {
+        const isExist = await database.member.findUnique({
+            where: {
+                id,
+            },
+        });
+
+        if (!isExist)
+            throw { status: 404, message: "유저를 찾을 수 없습니다." };
+
+        await database.member.delete({
+            where: {
+                id: isExist.id,
+            },
+        });
+    }
+}
+
+function getCurrentTimeFormatted() {
+    const currentTime = new Date();
+    return currentTime.toISOString();
 }

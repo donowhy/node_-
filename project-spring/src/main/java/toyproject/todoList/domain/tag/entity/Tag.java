@@ -14,7 +14,7 @@ public class Tag extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
 
@@ -23,7 +23,7 @@ public class Tag extends BaseTimeEntity {
     private Post post;
 
     @Builder
-    public Tag(Long id, String name, Post post) {
+    public Tag(Integer id, String name, Post post) {
         this.id = id;
         this.name = name;
         this.post = post;

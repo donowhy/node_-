@@ -1,3 +1,3 @@
-export * from "./users.dto";
-export * from "./create-user.dto";
-export * from "./update-user.dto";
+export * from "./members.dto";
+export * from "./create-member.dto";
+export * from "./update-member.dto";

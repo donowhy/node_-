@@ -24,8 +24,7 @@ public class Member extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id")
-    private Long id;
+    private Integer id;
 
     @NotBlank
     private String password;
@@ -57,7 +56,7 @@ public class Member extends BaseTimeEntity {
     private List<ReComment> reComments = new ArrayList<>();
 
     @Builder
-    public Member(Long id, String password, String email, Role role, String nickname, String refreshToken, Boolean openPrivacy, String loginId, List<TodoList> todoList, List<Post> postList, List<Comment> comments, List<ReComment> reComments) {
+    public Member(Integer id, String password, String email, Role role, String nickname, String refreshToken, Boolean openPrivacy, String loginId, List<TodoList> todoList, List<Post> postList, List<Comment> comments, List<ReComment> reComments) {
         this.id = id;
         this.password = password;
         this.email = email;

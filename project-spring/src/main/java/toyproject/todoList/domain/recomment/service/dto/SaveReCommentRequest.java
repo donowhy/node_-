@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class SaveReCommentRequest {
-    private Long commentId;
+    private Integer commentId;
     private String content;
 }
 

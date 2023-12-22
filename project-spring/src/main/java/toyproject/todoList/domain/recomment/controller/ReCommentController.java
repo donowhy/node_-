@@ -22,7 +22,7 @@ public class ReCommentController {
     }
 
     @DeleteMapping("/re-comment")
-    public void deleteReComment(Long reCommentId, @MemberInfo MembersInfo membersInfo) {
+    public void deleteReComment(Integer reCommentId, @MemberInfo MembersInfo membersInfo) {
         reCommentService.deleteReComment(reCommentId,membersInfo.getId());
     }
 

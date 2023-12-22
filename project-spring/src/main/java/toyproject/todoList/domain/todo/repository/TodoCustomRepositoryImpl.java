@@ -23,10 +23,10 @@ public class TodoCustomRepositoryImpl implements TodoCustomRepository {
     EntityManager entityManager;
 
     @Override
-    public List<DetailTodoResponse> getTodoToday(@Param("startdate") LocalDate startdate,@Param("enddate") LocalDate endDate,@Param("id") Long id){
-        // Use join instead of join fetch if you only want to filter based on the member's ID
+    public List<DetailTodoResponse> getTodoToday(LocalDate startdate, LocalDate endDate, Integer id) {
+
         TypedQuery<DetailTodoResponse> query = entityManager.createQuery(
-                "select new toyproject.todoList.domain.todo.service.dto.DetailTodoResponse(new DetailTodoResponse(new t.content, t.important, t.localDate)) from TodoList t join t.member m where m.id = :id and t.localDate between :startdate and :endDate",
+                "select new toyproject.todoList.domain.todo.service.dto.DetailTodoResponse(t.content, t.important, t.localDate) from TodoList t join t.member m where m.id = :id and t.localDate between :startdate and :endDate",
                 DetailTodoResponse.class
         );
 

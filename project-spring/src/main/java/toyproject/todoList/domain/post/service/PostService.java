@@ -25,7 +25,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final TagRepository tagRepository;
 
-    public SaveResponse savePost(SaveRequest request, Long id) {
+    public SaveResponse savePost(SaveRequest request, Integer id) {
 
         Member member = memberRepository.findById(id).orElseThrow();
 
@@ -54,7 +54,7 @@ public class PostService {
                 .build();
     }
 
-    public SaveResponse updatePost (UpdateRequest request, Long id) {
+    public SaveResponse updatePost (UpdateRequest request, Integer id) {
 
         Member member = memberRepository.findById(id).orElseThrow();
         List<Post> postList = member.getPostList();
@@ -90,7 +90,7 @@ public class PostService {
         for (Post post : all) {
             GetPostsResponse build = GetPostsResponse.builder()
                     .title(post.getTitle())
-                    .views(post.getViews().size())
+                    .views(post.getViews())
                     .likes(post.getLikes().size())
                     .author(post.getMember().getNickname())
                     .localDate(post.getUpdateTime().toLocalDate())
@@ -100,13 +100,10 @@ public class PostService {
         return posts;
     }
 
-    public GetOnePostResponse getOnePost (Long id, Long inMemberId) {
+    public GetOnePostResponse getOnePost (Integer id, Integer inMemberId) {
         ArrayList<String> temp = new ArrayList<>();
         Post post = postRepository.findById(id).orElseThrow();
 
-        if(inMemberId != null) {
-            post.setViews(inMemberId);
-        }
 
 
         for(int i=0; i<post.getTags().size(); i++) {
@@ -115,7 +112,7 @@ public class PostService {
         return GetOnePostResponse.builder()
                 .title(post.getTitle())
                 .tags(temp)
-                .viewCount(post.getViews().size())
+                .viewCount(post.getViews())
                 .likeCount(post.getLikes().size())
                 .author(post.getMember().getNickname())
                 .content(post.getContent())
@@ -124,7 +121,7 @@ public class PostService {
                 .build();
     }
 
-    public void deletePost(Long id, Long memberId){
+    public void deletePost(Integer id, Integer memberId){
         Member member = memberRepository.findById(memberId).orElseThrow();
 
         Post post = postRepository.findById(id).orElseThrow();

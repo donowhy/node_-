@@ -15,7 +15,7 @@ public class LikePost extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
@@ -24,7 +24,7 @@ public class LikePost extends BaseTimeEntity {
     private Post post;
 
     @Builder
-    public LikePost(Long id, Member member, Post post) {
+    public LikePost(Integer id, Member member, Post post) {
         this.id = id;
         this.member = member;
         this.post = post;

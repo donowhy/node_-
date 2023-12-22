@@ -25,7 +25,7 @@ public class TodoService {
     private final TodoRepository todoRepository;
     private final MemberRepository memberRepository;
 
-    public void saveTodayTodo(TodoSaveRequest request, Long id) {
+    public void saveTodayTodo(TodoSaveRequest request, Integer id) {
         Member member = member(id);
 
         todoRepository.save(TodoList.builder()
@@ -37,7 +37,7 @@ public class TodoService {
         );
     }
 
-    public void changeTodoState(DoneMyTodoRequest request, Long id) {
+    public void changeTodoState(DoneMyTodoRequest request, Integer id) {
         Member member = member(id);
 
         List<TodoList> todoList = member.getTodoList();
@@ -56,7 +56,7 @@ public class TodoService {
         }
     }
 
-    public void delete(TodoDeleteRequest request, Long id) {
+    public void delete(TodoDeleteRequest request, Integer id) {
         Member member = member(id);
         List<TodoList> todoList = member.getTodoList();
 
@@ -69,14 +69,14 @@ public class TodoService {
 
     }
 
-    public List<DetailTodoResponse> getTodoToday(LocalDate startdate, LocalDate endDate, Long id) {
+    public List<DetailTodoResponse> getTodoToday(LocalDate startdate, LocalDate endDate, Integer id) {
         Member member = member(id);
         return todoRepository.getTodoToday(startdate, endDate, id);
     }
 
 
 
-    private Member member(Long id) {
+    private Member member(Integer id) {
         return memberRepository.findById(id).orElseThrow(()
                 -> new BusinessException(ErrorCode.NOT_EXISTS_USER_ID));
     }

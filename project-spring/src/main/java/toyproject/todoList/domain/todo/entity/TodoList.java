@@ -18,7 +18,7 @@ public class TodoList extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String content;
 
@@ -33,7 +33,7 @@ public class TodoList extends BaseTimeEntity {
     private Member member;
 
     @Builder
-    public TodoList(Long id, String content, Important important, boolean checked, Member member) {
+    public TodoList(Integer id, String content, Important important, boolean checked, Member member) {
         this.id = id;
         this.content = content;
         this.important = important;

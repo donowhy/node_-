@@ -21,7 +21,7 @@ public class Post extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String title;
 
@@ -33,9 +33,7 @@ public class Post extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    @ElementCollection
-    private Set<Long> views = new HashSet<>();
-
+    private Integer views;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<LikePost> likes;
@@ -45,7 +43,7 @@ public class Post extends BaseTimeEntity {
 
 
     @Builder
-    public Post(Long id, String title, String content, List<Comment> comments, Member member, Set<Long> views, List<LikePost> likes, List<Tag> tags) {
+    public Post(Integer id, String title, String content, List<Comment> comments, Member member, Integer views, List<LikePost> likes, List<Tag> tags) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -66,7 +64,4 @@ public class Post extends BaseTimeEntity {
         this.tags = tags;
     }
 
-    public void setViews(Long i) {
-        this.getViews().add(i);
-    }
 }

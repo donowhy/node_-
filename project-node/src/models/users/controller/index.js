@@ -1,91 +1,97 @@
 import { Router } from "express";
 import { pagination } from "../../../middleware/pagination";
 
-import { UsersDTO, CreateUserDTO, UpdateUserDTO } from "../dto";
-import { UserService } from "../service";
+import { MemberDTO, CreateMemberDTO, UpdateMemberDTO } from "../dto";
+import { MemberService } from "../service";
 
 // Router
-class UserController {
-  router;
-  path = "/users";
-  userService;
+class MemberController {
+    router;
+    path = "/members";
+    memberService;
 
-  constructor() {
-    this.router = Router();
-    this.userService = new UserService();
-    this.init();
-  }
-
-  init() {
-    this.router.get("/", pagination, this.getUsers.bind(this));
-    this.router.get("/detail/:id", this.getUser.bind(this));
-    this.router.post("/", this.createUser.bind(this));
-    this.router.post("/:id", this.updateUser.bind(this));
-    this.router.post("/:id", this.deleteUser.bind(this));
-  }
-
-  async getUsers(req, res, next) {
-    try {
-      const { users, count } = await this.userService.findUsers({
-        skip: req.skip,
-        take: req.take,
-      });
-
-      res
-        .status(200)
-        .json({ users: users.map((user) => new UsersDTO(user)), count });
-    } catch (err) {
-      next(err);
+    // 생성자
+    constructor() {
+        this.router = Router();
+        this.memberService = new MemberService();
+        this.init();
     }
-  }
 
-  async getUser(req, res, next) {
-    try {
-      const { id } = req.params;
-      const user = await this.userService.findUserById(id);
-
-      res.status(200).json({ user: new UsersDTO(user) });
-    } catch (err) {
-      next(err);
+    // 라우터 init
+    init() {
+        this.router.get("/", pagination, this.getMembers.bind(this));
+        this.router.get("/detail/:id", this.getMember.bind(this));
+        this.router.post("/", this.createMember.bind(this));
+        this.router.post("/:id", this.updateMember.bind(this));
+        this.router.post("/:id", this.deleteMember.bind(this));
     }
-  }
 
-  async createUser(req, res, next) {
-    try {
-      const createUserDto = new CreateUserDTO(req.body);
+    async getMembers(req, res, next) {
+        try {
+            const { members: members, count } =
+                await this.memberService.findMembers({
+                    skip: req.skip,
+                    take: req.take,
+                });
 
-      const newUserId = await this.userService.createUser(createUserDto);
-
-      res.status(201).json({ id: newUserId });
-    } catch (err) {
-      next(err);
+            res.status(200).json({
+                members: members.map((member) => new MemberDTO(member)),
+                count,
+            });
+        } catch (err) {
+            next(err);
+        }
     }
-  }
-  async updateUser(req, res, next) {
-    try {
-      const { id } = req.params;
-      const updateUserDto = new UpdateUserDTO(req.body);
 
-      await this.userService.updateUser(id, updateUserDto);
+    async getMember(req, res, next) {
+        try {
+            const { id } = req.params;
+            const member = await this.memberService.findMemberById(id);
 
-      res.status(204).json({});
-    } catch (err) {
-      next(err);
+            res.status(200).json({ member: new MemberDTO(member) });
+        } catch (err) {
+            next(err);
+        }
     }
-  }
 
-  async deleteUser(req, res, next) {
-    try {
-      const { id } = req.params;
+    async createMember(req, res, next) {
+        try {
+            const createMemberDto = new CreateMemberDTO(req.body);
 
-      await this.userService.deleteUser(id);
+            const newMemberId = await this.memberService.createMember(
+                createMemberDto
+            );
 
-      res.status(204).json({});
-    } catch (err) {
-      next(err);
+            res.status(201).json({ id: newMemberId });
+        } catch (err) {
+            next(err);
+        }
     }
-  }
+    async updateMember(req, res, next) {
+        try {
+            const { id } = req.params;
+            const updateMemberDto = new UpdateMemberDTO(req.body);
+
+            await this.memberService.updateMember(id, updateMemberDto);
+
+            res.status(204).json({});
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    async deleteMember(req, res, next) {
+        try {
+            const { id } = req.params;
+
+            await this.memberService.deleteMember(id);
+
+            res.status(204).json({});
+        } catch (err) {
+            next(err);
+        }
+    }
 }
 
-const userController = new UserController();
-export default userController;
+const memberController = new MemberController();
+export default memberController;
