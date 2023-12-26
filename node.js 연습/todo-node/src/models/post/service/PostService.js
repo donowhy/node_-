@@ -10,13 +10,13 @@ export class PostService {
     }
 
     // CreatePostDto.js
-    async savePost(props) {
-        const member = await this.memberService.findMemberById(props.member_id);
+    async savePost(title, content, tag, memberId) {
+        const member = await this.memberService.findMemberById(memberId);
 
         const newPost = await database.post.create({
             data: {
-                title: props.title,
-                content: props.content,
+                title: title,
+                content: content,
                 member: {
                     connect: {
                         id: member.id,
@@ -24,13 +24,14 @@ export class PostService {
                 },
                 tag: {
                     createMany: {
-                        data: props.tag.map((t) => ({
+                        data: tag.map((t) => ({
                             name: t,
                         })),
                     },
                 },
                 create_time: getCurrentTimeFormatted(),
                 update_time: getCurrentTimeFormatted(),
+                views: 0,
             },
         });
 
@@ -39,15 +40,21 @@ export class PostService {
 
     async getPost(id, props) {
         const member = await this.memberService.findMemberById(props.memberId);
-        const post = await database.post.findFirst({
+        const post = await database.post.findUnique({
             where: {
                 id,
             },
+
             include: {
                 member: true,
                 comment: {
                     include: {
                         member: true,
+                        re_comment: {
+                            include: {
+                                member: true,
+                            },
+                        },
                     },
                 },
                 tag: true,
@@ -59,7 +66,16 @@ export class PostService {
             throw { status: 404, message: "게시물을 찾을 수 없습니다." };
         }
 
-        return new PostDto(post, member);
+        await database.post.update({
+            where: {
+                id,
+            },
+            data: {
+                views: post.views + 1,
+            },
+        });
+
+        return new PostDto({ ...post, views: post.views + 1 }, member);
     }
 
     async getPosts({ skip, take }, searchValue) {

@@ -8,9 +8,8 @@ export class PostReCommentService {
         this.memberService = new MemberService();
     }
 
-    async CreateReComment(commentId, props) {
-        const member = await this.memberService.findMemberById(props.member_id);
-
+    async CreateReComment(commentId, props, memberId) {
+        const member = await this.memberService.findMemberById(memberId);
         const comment = await database.comment.findUnique({
             where: {
                 id: commentId,
@@ -40,8 +39,11 @@ export class PostReCommentService {
         return newReComment.id;
     }
 
-    async updateReComment(commentId, reCommentId, props) {
-        const member = await this.memberService.findMemberById(props.member_id);
+    async updateReComment(commentId, reCommentId, props, memberId) {
+        const member = await this.memberService.findMemberById(memberId);
+
+        console.log(member.id);
+
         const comment = await database.comment.findUnique({
             where: {
                 id: commentId,

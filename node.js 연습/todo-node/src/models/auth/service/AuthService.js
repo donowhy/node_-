@@ -29,7 +29,7 @@ export class AuthService {
         });
 
         const accessToken = jwt.sign({ id: newUserId }, process.env.JWT_KEY, {
-            expiresIn: "2h",
+            expiresIn: "14d",
         });
         const refreshToken = jwt.sign({ id: newUserId }, process.env.JWT_KEY, {
             expiresIn: "14d",

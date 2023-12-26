@@ -62,13 +62,13 @@ class PostController {
             if (!req.member)
                 throw { status: 401, message: "로그인을 진행해주세요." };
             const body = req.body;
-
-            const newPostId = await this.postService.savePost({
-                title: body.title,
-                content: body.content,
-                tag: body.tag,
-                id: req.member.id,
-            });
+            console.log(req.member);
+            const newPostId = await this.postService.savePost(
+                body.title,
+                body.content,
+                body.tag,
+                req.member.id
+            );
 
             res.status(201).json({ id: newPostId });
         } catch (err) {
@@ -86,6 +86,7 @@ class PostController {
 
             res.status(200).json({ post });
         } catch (err) {
+            console.log(err);
             next(err);
         }
     }
@@ -144,6 +145,7 @@ class PostController {
     // 게시글 댓글
     async createComment(req, res, next) {
         try {
+            console.log(req.member);
             if (!req.member)
                 throw { status: 401, message: "로그인을 진행해주세요" };
 
@@ -155,7 +157,7 @@ class PostController {
                 postId,
                 new CreateCommentDto({
                     content: body.content,
-                    member_id: body.member_id,
+                    member_id: req.member.id,
                 })
             );
 
@@ -205,8 +207,6 @@ class PostController {
                 req.member
             );
 
-            console.log(contents);
-
             res.status(204).json({
                 contents, // 왜 201 create 나오는데 content의 값이 안나오는건가.
             });
@@ -245,7 +245,7 @@ class PostController {
             if (!req.member) {
                 throw { status: 401, message: "로그인을 진행해주세요" };
             }
-
+            console.log(req.member);
             const { commentId } = req.params;
             const commnet_id = parseInt(commentId, 10);
             const body = req.body;
@@ -253,7 +253,8 @@ class PostController {
             const newReComment =
                 await this.postReCommentService.CreateReComment(
                     commnet_id,
-                    body
+                    body,
+                    req.member.id
                 );
             res.status(201).json(newReComment.id);
         } catch (err) {
@@ -270,19 +271,17 @@ class PostController {
 
             const { commentId } = req.params;
             const commnet_id = parseInt(commentId, 10);
-            console.log(commnet_id);
 
             const { re_commentId } = req.params;
             const re_commnet_id = parseInt(re_commentId, 10);
 
             const body = req.body;
-            console.log(body);
             const contents = await this.postReCommentService.updateReComment(
                 commnet_id,
                 re_commnet_id,
-                body
+                body,
+                req.member.id
             );
-
             res.status(204).json({
                 contents,
             });

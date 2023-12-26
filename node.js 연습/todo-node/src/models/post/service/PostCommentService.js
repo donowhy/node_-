@@ -15,7 +15,7 @@ export class PostCommentService {
                 id,
             },
         });
-
+        console.log(member.id);
         if (!post) throw { status: 404, message: "게시글을 찾을 수 없음." };
 
         const newComment = await database.comment.create({

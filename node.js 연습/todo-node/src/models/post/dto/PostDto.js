@@ -1,5 +1,10 @@
 import { MemberDto } from "../../users/dto/MemberDto";
 import { TagDto } from "./tagDto/TagDto";
+import { CommentDto } from "./commentDto/CommentDto";
+import { ReCommentDto } from "./commentDto/ReCommentDto";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export class PostDto {
     id;
@@ -10,6 +15,8 @@ export class PostDto {
     like_post;
     member;
     tag;
+    comment;
+    views;
 
     constructor(props, member) {
         this.id = props.id;
@@ -26,5 +33,32 @@ export class PostDto {
                     name: t.name,
                 })
         );
+
+        // Check if props.comment is defined before mapping
+        this.comment =
+            props.comment &&
+            props.comment.map(
+                (comment) =>
+                    new CommentDto({
+                        id: comment.id,
+                        content: comment.content,
+                        create_time: comment.create_time,
+                        update_time: comment.update_time,
+                        member: comment.member,
+                        re_comment:
+                            comment.re_comment &&
+                            comment.re_comment.map(
+                                (reComment) =>
+                                    new ReCommentDto({
+                                        id: reComment.id,
+                                        content: reComment.content,
+                                        create_time: reComment.create_time,
+                                        update_time: reComment.update_time,
+                                        member: reComment.member,
+                                    })
+                            ),
+                    })
+            );
+        this.views = props.views;
     }
 }
