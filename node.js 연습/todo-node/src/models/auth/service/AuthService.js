@@ -28,14 +28,7 @@ export class AuthService {
             update_time: getCurrentTimeFormatted(),
         });
 
-        const accessToken = jwt.sign({ id: newUserId }, process.env.JWT_KEY, {
-            expiresIn: "14d",
-        });
-        const refreshToken = jwt.sign({ id: newUserId }, process.env.JWT_KEY, {
-            expiresIn: "14d",
-        });
-
-        return { accessToken, refreshToken };
+        return {};
     }
 
     // props : LoginDTO
@@ -53,7 +46,7 @@ export class AuthService {
             throw { status: 400, message: "비밀번호를 잘못 입력하였습니다." };
 
         const accessToken = jwt.sign({ id: isExist.id }, process.env.JWT_KEY, {
-            expiresIn: "2h",
+            expiresIn: "14h",
         });
         const refreshToken = jwt.sign({ id: isExist.id }, process.env.JWT_KEY, {
             expiresIn: "14d",

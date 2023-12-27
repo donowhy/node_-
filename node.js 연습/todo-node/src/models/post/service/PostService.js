@@ -165,6 +165,66 @@ export class PostService {
             },
         });
     }
+
+    async postLike(id, memberId) {
+        const member = await this.memberService.findMemberById(memberId);
+        const post = await database.post.findUnique({
+            where: {
+                id: id,
+            },
+        });
+
+        const existingLike =
+            await database.$queryRaw`SELECT * FROM like_post WHERE member_id = ${member.id} AND post_id = ${post.id}`;
+
+        console.log(existingLike && !existingLike.length > 0);
+
+        if (existingLike && existingLike.length > 0) {
+            return "이미 좋아요 하셨습니다.";
+        }
+
+
+        await database.like_post.create({
+            data: {
+                member: {
+                    connect: {
+                        id: member.id,
+                    },
+                },
+                post: {
+                    connect: {
+                        id: post.id,
+                    },
+                },
+                create_time: getCurrentTimeFormatted(),
+                update_time: getCurrentTimeFormatted(),
+            },
+        });
+    }
+
+    async deletePostLike(id, memberId) {
+        const member = await this.memberService.findMemberById(memberId);
+        const post = await database.post.findUnique({
+            where: {
+                id: id,
+            },
+        });
+
+        const likes = await database.like_post.findMany({
+            where: {
+                member_id: member.id,
+                post_id: post.id,
+            },
+        });
+
+        console.log(likes);
+
+        await database.like_post.delete({
+            where: {
+                id: likes[0].id,
+            },
+        });
+    }
 }
 
 function getCurrentTimeFormatted() {

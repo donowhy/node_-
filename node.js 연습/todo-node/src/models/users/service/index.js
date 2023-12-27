@@ -1,4 +1,7 @@
 import database from "../../../database";
+import bcrypt from "bcryptjs";
+import dotenv from "dotenv";
+dotenv.config();
 
 export class MemberService {
     async checkMemberByEmail(email) {
@@ -14,13 +17,14 @@ export class MemberService {
     }
 
     async findMemberById(id) {
-        const member = await database.member.findFirst({
+        const member = await database.member.findUnique({
             where: {
                 id,
             },
         });
 
         if (!member) throw { status: 404, message: "유저를 찾을 수 없습니다." };
+
         return member;
     }
 
@@ -53,6 +57,66 @@ export class MemberService {
         });
 
         return newMember.id;
+    }
+
+    async changeNickname(memberId, nickname) {
+        const member = await this.findMemberById(memberId);
+        console.log("service", member);
+        await database.member.update({
+            where: {
+                id: member.id,
+            },
+            data: {
+                update_time: getCurrentTimeFormatted(),
+                nickname: nickname,
+            },
+        });
+    }
+
+    async changePrivacy(memberId) {
+        const member = await this.findMemberById(memberId);
+
+        await database.member.update({
+            where: {
+                id: member.id,
+            },
+            data: {
+                update_time: getCurrentTimeFormatted(),
+                open_privacy: true ? false : true,
+            },
+        });
+    }
+
+    async changePassword(memberId, password) {
+        const member = await this.findMemberById(memberId);
+
+        await database.member.update({
+            where: {
+                id: member.id,
+            },
+            data: {
+                password: password,
+                update_time: getCurrentTimeFormatted(),
+            },
+        });
+    }
+    async updatePassword(originPassword, hashedOriginPassword) {
+        const compare = await bcrypt.compare(
+            originPassword,
+            hashedOriginPassword
+        );
+        console.log(compare);
+        return compare;
+    }
+
+    async deleteMember(memberId) {
+        const member = await this.findMemberById(memberId);
+
+        await database.member.delete({
+            where: {
+                id: member.id,
+            },
+        });
     }
 }
 
