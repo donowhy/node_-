@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 
 // Pages
-import MainPage from "./component/page/MainPage";
-import PostViewPage from "./component/page/PostViewPage";
-import PostWritePage from "./component/page/PostWritePage";
+import MainPage from "./page/MainPage";
+import PostViewPage from "./page/PostViewPage";
+import PostWritePage from "./page/PostWritePage";
 
 const MainTitleText = styled.p`
     font-size: 24px;

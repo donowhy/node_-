@@ -2,7 +2,6 @@ package toyproject.todoList.domain.member.service;
 
 import toyproject.todoList.domain.member.dto.*;
 import toyproject.todoList.domain.member.entity.Member;
-import toyproject.todoList.domain.member.entity.enumType.Role;
 import toyproject.todoList.domain.member.repository.MemberRepository;
 import toyproject.todoList.domain.member.service.dto.MemberResponse;
 import toyproject.todoList.domain.post.entity.Post;
@@ -27,14 +26,13 @@ public class MemberService {
     private final JwtProvider jwtProvider;
 
     // 회원 가입
-    public void save(UserSaveRequestDto userSaveRequestDto) {
+    public void save(RegisterDto registerDto) {
 
         Member member = Member.builder()
-                .email(userSaveRequestDto.getEmail())
-                .password(userSaveRequestDto.getPassword())
-                .nickname(userSaveRequestDto.getNickname())
-                .loginId(userSaveRequestDto.getLoginId())
-                .role(Role.USER)
+                .email(registerDto.getEmail())
+                .password(registerDto.getPassword())
+                .nickname(registerDto.getNickname())
+                .loginId(registerDto.getLoginId())
                 .openPrivacy(true)
                 .build();
 
@@ -43,28 +41,29 @@ public class MemberService {
 
 
     // 유저 정보 조회
-    public UserResponse getMyInfo(Integer id) {
+    public MemberInfo getMyInfo(Integer id) {
         Member member = memberRepository.findById(id).orElseThrow(() ->
                 new BusinessException(ErrorCode.NOT_EXISTS_USER_ID)
         );
 
-        ArrayList<MemberResponse.PostDto> postDtos = new ArrayList<>();
-        List<Post> posts = memberRepository.findPosts(member.getId());
+        ArrayList<MemberResponse.PostDto> wrotePost = new ArrayList<>();
+
+        ArrayList<Post> posts = memberRepository.findPosts(member.getId());
         for (Post post : posts) {
-            postDtos.add(MemberResponse.PostDto.builder()
+            wrotePost.add(MemberResponse.PostDto.builder()
                     .title(post.getTitle())
                     .likes(post.getLikes().size())
                     .views(post.getViews())
                     .build());
         }
 
-        return UserResponse.builder()
+        return MemberInfo.builder()
                 .email(member.getEmail())
                 .nickname(member.getNickname())
                 .loginId(member.getLoginId())
                 .postsCount(memberRepository.postsCounter(member.getId()))
                 .commentsCount(memberRepository.commentsCounter(member.getId()))
-                .postDtoList(postDtos)
+                .postDtoList(wrotePost)
                 .openPrivacy(member.getOpenPrivacy())
                 .build();
     }

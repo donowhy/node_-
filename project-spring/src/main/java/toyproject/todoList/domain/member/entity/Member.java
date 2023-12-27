@@ -1,5 +1,6 @@
 package toyproject.todoList.domain.member.entity;
 
+import lombok.Getter;
 import toyproject.todoList.domain.comment.entity.Comment;
 import toyproject.todoList.domain.member.entity.enumType.Role;
 import toyproject.todoList.domain.post.entity.Post;
@@ -9,17 +10,17 @@ import toyproject.todoList.global.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static jakarta.persistence.CascadeType.*;
+import static lombok.AccessLevel.*;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = PROTECTED)
 public class Member extends BaseTimeEntity {
 
     @Id
@@ -35,12 +36,15 @@ public class Member extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @NotBlank
     private String nickname;
 
     private String refreshToken;
 
+    @NotBlank
     private Boolean openPrivacy;
 
+    @NotBlank
     private String loginId;
 
     @OneToMany(mappedBy = "member", cascade = ALL, orphanRemoval = true)
@@ -56,19 +60,14 @@ public class Member extends BaseTimeEntity {
     private List<ReComment> reComments = new ArrayList<>();
 
     @Builder
-    public Member(Integer id, String password, String email, Role role, String nickname, String refreshToken, Boolean openPrivacy, String loginId, List<TodoList> todoList, List<Post> postList, List<Comment> comments, List<ReComment> reComments) {
-        this.id = id;
+    public Member(String password, String email,  String nickname, String refreshToken, Boolean openPrivacy, String loginId) {
         this.password = password;
         this.email = email;
-        this.role = role;
+        this.role = Role.USER;
         this.nickname = nickname;
         this.refreshToken = refreshToken;
         this.openPrivacy = openPrivacy;
         this.loginId = loginId;
-        this.todoList = todoList;
-        this.postList = postList;
-        this.comments = comments;
-        this.reComments = reComments;
     }
 
     public void setNickname(String nickName) {
@@ -86,4 +85,5 @@ public class Member extends BaseTimeEntity {
     public void setOpenPrivacy(Boolean openPrivacy) {
         this.openPrivacy = openPrivacy;
     }
+
 }
