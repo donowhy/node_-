@@ -1,11 +1,12 @@
-import React from 'react';
+import React from 'react'
+import Main from '../components/section/Main'
 
 const Port = () => {
     return (
-        <div>
+        <Main>
             Port
-        </div>
-    );
-};
+        </Main>
+    )
+}
 
-export default Port;
+export default Port

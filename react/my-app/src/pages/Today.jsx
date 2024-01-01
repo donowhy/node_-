@@ -1,11 +1,12 @@
-import React from 'react';
+import React from 'react'
+import Main from '../components/section/Main'
 
 const Today = () => {
     return (
-        <div>
+        <Main>
             Today
-        </div>
-    );
-};
+        </Main>
+    )
+}
 
-export default Today;
+export default Today

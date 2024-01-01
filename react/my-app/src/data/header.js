@@ -1,6 +1,16 @@
-import { CiBaseball, CiMoneyBill, CiFries,CiDumbbell, CiCoins1, CiCoffeeCup,CiBullhorn ,CiBoxes } from "react-icons/ci";
-import { AiFillGithub, AiOutlineInstagram, AiOutlineCodepen, AiFillYoutube} from "react-icons/ai";
+import { CiBaseball } from "react-icons/ci";
+import { CiCoins1 } from "react-icons/ci";
+import { CiBoxes } from "react-icons/ci";
+import { CiBullhorn } from "react-icons/ci";
+import { CiCoffeeCup } from "react-icons/ci";
+import { CiDumbbell } from "react-icons/ci";
+import { CiFries } from "react-icons/ci";
+import { CiMoneyBill } from "react-icons/ci";
 
+import { AiFillGithub } from "react-icons/ai";
+import { AiOutlineCodepen } from "react-icons/ai";
+import { AiFillYoutube } from "react-icons/ai";
+import { AiOutlineInstagram } from "react-icons/ai";
 
 export const headerMenus = [
     {

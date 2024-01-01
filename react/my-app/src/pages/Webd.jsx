@@ -1,11 +1,12 @@
-import React from 'react';
+import React from 'react'
+import Main from '../components/section/Main'
 
 const Webd = () => {
     return (
-        <div>
+        <Main>
             Webd
-        </div>
-    );
-};
+        </Main>
+    )
+}
 
-export default Webd;
+export default Webd
