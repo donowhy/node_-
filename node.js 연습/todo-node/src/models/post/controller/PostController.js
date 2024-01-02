@@ -1,9 +1,7 @@
 import { Router } from "express";
 import { PostService } from "../service/PostService";
-import { CreatePostDto } from "../dto/CreatePostDto";
 import { UpdatePostDto } from "../dto/UpdatePostDto";
-import { pagination } from "../../../middleware/pagination";
-import { jwtAuth, log } from "../../../middleware";
+import { pagination } from "../../../middleware";
 import { PostCommentService } from "../service/PostCommentService";
 import { CreateCommentDto } from "../dto/commentDto/CreateCommentDto";
 import { PostReCommentService } from "../service/PostReCommentService";

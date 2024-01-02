@@ -1,5 +1,5 @@
-import { MemberDto } from "../../users/dto/MemberDto";
-import { TagDto } from "./tagDto/TagDto";
+import { MemberDto } from "../../members/dto";
+import { TagDto } from "./tagDto";
 import { CommentDto } from "./commentDto/CommentDto";
 import { ReCommentDto } from "./commentDto/ReCommentDto";
 import { PrismaClient } from "@prisma/client";

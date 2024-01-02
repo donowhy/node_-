@@ -1,8 +1,7 @@
 import { Router } from "express";
 import { TodoService } from "../service/TodoService";
 import { CreateTodoDto } from "../dto/CreateTodoDto";
-import { pagination } from "../../../middleware/pagination";
-import { log } from "../../../middleware";
+import { pagination } from "../../../middleware";
 
 class TodoController {
     router;
