@@ -1,5 +1,5 @@
 import { AuthController, AuthSwagger } from "./auth/auth";
-import { UserController, UserSwagger } from "./members";
+import { UserController, UserSwagger } from "./users";
 import { PostController } from "./post";
 import { TodoController } from "./todo";
 

@@ -1,5 +1,5 @@
 import database from "../../../database";
-import { MemberService } from "../../members/service";
+import { MemberService } from "../../users/service";
 
 export class PostCommentService {
     memberService;

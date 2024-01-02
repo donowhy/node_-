@@ -1,4 +1,4 @@
-import { MemberDto } from "../../../members/dto";
+import { MemberDto } from "../../../users/dto";
 
 export class ReCommentDto {
     id;

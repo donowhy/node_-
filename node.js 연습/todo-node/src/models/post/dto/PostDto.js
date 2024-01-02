@@ -1,4 +1,4 @@
-import { MemberDto } from "../../members/dto/MemberDto";
+import { MemberDto } from "../../users/dto/MemberDto";
 import { TagDto } from "./tagDto/TagDto";
 import { CommentDto } from "./commentDto/CommentDto";
 import { ReCommentDto } from "./commentDto/ReCommentDto";

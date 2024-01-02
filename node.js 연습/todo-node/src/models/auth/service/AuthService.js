@@ -1,4 +1,4 @@
-import { MemberService } from "../../members/service";
+import { MemberService } from "../../users/service";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();

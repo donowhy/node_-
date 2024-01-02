@@ -1,4 +1,4 @@
-import { MemberDto } from "../../members/dto/MemberDto";
+import { MemberDto } from "../../users/dto/MemberDto";
 
 export class PostsDto {
     id;
