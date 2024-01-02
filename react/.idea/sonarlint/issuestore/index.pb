@@ -61,8 +61,6 @@ V
 +my-app/src/assets/scss/section/_layout.scss,a\e\ae05f60a4bd3c24af709aca66fd3e3c51f0be8a4
 [
 +my-app/src/assets/scss/section/_header.scss,5\a\5add236c28567db03f9aced48184f8169e664a37
-D
-my-app/src/header.js,9\5\95f4ed02ebf2bd7da530d58c38b36955460b02fc
 I
 my-app/src/data/header.js,f\3\f311106fbe099a3bb9f8a595d38e6157f1cbfe3a
 U
