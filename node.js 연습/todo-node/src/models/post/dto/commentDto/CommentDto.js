@@ -1,5 +1,5 @@
 import { ReCommentDto } from "./ReCommentDto";
-import { MemberDto } from "../../../users/dto";
+import { MemberDto } from "../../../members/dto";
 import database from "../../../../database";
 
 export class CommentDto {
