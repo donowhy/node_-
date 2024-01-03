@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Main from '../components/section/Main';
+import Main from '../../components/section/Main';
+import {useNavigate} from "react-router-dom";
 
-const Home = () => {
+const Post = () => {
     const [posts, setPosts] = useState([]);
     const [count, setCount] = useState(0);
     const [searchValue, setSearchValue] = useState("");
@@ -14,6 +15,14 @@ const Home = () => {
             setToken(storedToken);
         }
     }, []);
+
+
+    let navigateFunction = useNavigate();
+
+    const handleCreateTodo = () => {
+        // '할 일 작성' 버튼 클릭 시, 할 일 작성 페이지로 이동
+        navigateFunction('/post/register');
+    };
 
     const getData = async (e) => {
         e.preventDefault();
@@ -58,7 +67,7 @@ const Home = () => {
                         Search:
                         <input type="text" value={searchValue}
                                onChange={(e) =>
-                                   setSearchValue(e.target.value)} />
+                                   setSearchValue(e.target.value)}/>
 
                     </label>
                     <button type="submit">Fetch Posts</button>
@@ -70,9 +79,10 @@ const Home = () => {
                     ))}
                 </ul>
                 <p>Total Count: {count}</p>
+                <button onClick={handleCreateTodo}>할 일 작성</button>
             </div>
         </Main>
     );
 };
 
-export default Home;
+export default Post;
