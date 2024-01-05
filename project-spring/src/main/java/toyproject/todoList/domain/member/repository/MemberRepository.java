@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public interface MemberRepository extends JpaRepository<Member, Integer> , CustomMemberRepository{
+public interface MemberRepository extends JpaRepository<Member, Integer>{
 
     Optional<Member> findByLoginId(String loginId);
 

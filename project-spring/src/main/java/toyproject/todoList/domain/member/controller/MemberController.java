@@ -98,10 +98,4 @@ public class MemberController {
         memberService.changePrivacy(membersInfo.getId());
     }
 
-    @GetMapping("/querydsl")
-    public void querydsl(@RequestBody Integer id){
-        Optional<Member> byId = memberRepository.findById(id);
-        memberRepository.findMemberInfo(byId.get());
-
-    }
 }

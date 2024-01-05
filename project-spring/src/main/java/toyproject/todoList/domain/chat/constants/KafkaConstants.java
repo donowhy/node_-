@@ -1,2 +1,12 @@
-package toyproject.todoList.domain.chat.constants;public class KafkaConstants {
+package toyproject.todoList.domain.chat.constants;
+
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class KafkaConstants {
+    public static final String KAFKA_TOPIC = "kafka-chat";
+    public static final String GROUP_ID = "foo";
+    public static final String KAFKA_BROKER = "localhost:9092";
+
 }
