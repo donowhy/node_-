@@ -10,7 +10,7 @@ export class PostService {
     }
 
     // CreatePostDto.js
-    async savePost(title, content, tag, memberId) {
+    async savePost(title, content, tags, memberId) {
         const member = await this.memberService.findMemberById(memberId);
 
         const newPost = await database.post.create({
@@ -24,8 +24,8 @@ export class PostService {
                 },
                 tag: {
                     createMany: {
-                        data: tag.map((t) => ({
-                            name: t,
+                        data: tags.map((tag) => ({
+                            name: tag,
                         })),
                     },
                 },
@@ -34,12 +34,13 @@ export class PostService {
                 views: 0,
             },
         });
-
+        console.log(newPost);
         return newPost.id;
     }
 
-    async getPost(id, props) {
-        const member = await this.memberService.findMemberById(props.memberId);
+    async getPost(id, memberInfo) {
+        console.log(memberInfo);
+        const member = await this.memberService.findMemberById(memberInfo.id);
         const post = await database.post.findUnique({
             where: {
                 id,

@@ -16,12 +16,26 @@ export class MemberService {
         return member;
     }
 
+    async checkMemberByLoginId(login_id) {
+        const member = await database.member.findFirst({
+            where: {
+                login_id,
+            },
+        });
+
+        if (!member) return false;
+
+        return member;
+    }
+
     async findMemberById(id) {
         const member = await database.member.findUnique({
             where: {
                 id,
             },
         });
+        console.log(member);
+        console.log("method");
 
         if (!member) throw { status: 404, message: "유저를 찾을 수 없습니다." };
 

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { pagination } from "../../../middleware/pagination";
+import { pagination } from "../../../middleware";
 
 import { MemberDto } from "../dto";
 import { MemberService } from "../service";
@@ -49,8 +49,10 @@ class MemberController {
     async getMember(req, res, next) {
         try {
             const { id } = req.params;
-            const member = await this.memberService.findMemberById(id);
-
+            let memberId = parseInt(id, 10);
+            const member = await this.memberService.findMemberById(memberId);
+            console.log(member);
+            console.log("controller");
             res.status(200).json({ member: new MemberDto(member) });
         } catch (err) {
             next(err);

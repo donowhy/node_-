@@ -33,15 +33,17 @@ export class AuthService {
 
     // props : LoginDTO
     async login(props) {
-        const isExist = await this.memberService.checkMemberByEmail(
-            props.email
+        const isExist = await this.memberService.checkMemberByLoginId(
+            props.login_id
         );
+
+        console.log(isExist);
 
         if (!isExist)
             throw { status: 404, message: "유저가 존재하지 않습니다." };
 
         const isCorrect = await props.comparePassword(isExist.password);
-
+        console.log(isCorrect);
         if (!isCorrect)
             throw { status: 400, message: "비밀번호를 잘못 입력하였습니다." };
 
@@ -51,6 +53,8 @@ export class AuthService {
         const refreshToken = jwt.sign({ id: isExist.id }, process.env.JWT_KEY, {
             expiresIn: "14d",
         });
+
+        console.log(accessToken);
 
         return {
             accessToken,

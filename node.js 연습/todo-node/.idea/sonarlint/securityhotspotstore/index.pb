@@ -45,3 +45,15 @@ H
 .env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 D
 prisma/schema.prisma,1\8\187e4a6f168cf143dde68ce28a29ae08ce9b9578
+S
+#src/models/auth/dto/register.dto.js,1\e\1e9a1100ce6afbd24309f5061379ed808e318180
+P
+ src/models/auth/dto/login.dto.js,e\3\e33d0d839dd490c00f07b916cd6d52ab07a86f17
+S
+#src/models/members/service/index.js,2\d\2dbd197fe25386e7a9eaf257ac50b27b08e01aa8
+V
+&src/models/members/controller/index.js,c\d\cdf4917feeb7aa3d9c4492c34c38036406504e7a
+S
+#src/models/members/dto/MemberDto.js,c\5\c5a4cb0419d225f6c5c1bf1cf4ad461d1df311f6
+V
+&node_modules/.prisma/client/index.d.ts,f\c\fc829def72f7a98f005f2ea4b2a1c95cca57efe6

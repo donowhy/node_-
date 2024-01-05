@@ -63,11 +63,12 @@ class PostController {
             if (!req.member)
                 throw { status: 401, message: "로그인을 진행해주세요." };
             const body = req.body;
+            console.log(body);
             console.log(req.member);
             const newPostId = await this.postService.savePost(
                 body.title,
                 body.content,
-                body.tag,
+                body.tags,
                 req.member.id
             );
 
@@ -84,7 +85,7 @@ class PostController {
             const postId = parseInt(id, 10);
 
             const post = await this.postService.getPost(postId, req.member);
-
+            console.log(post);
             res.status(200).json({ post });
         } catch (err) {
             console.log(err);
@@ -94,6 +95,7 @@ class PostController {
 
     async getPosts(req, res, next) {
         try {
+            console.log(req.body);
             const searchValue = req.query.searchValue;
             const { posts, count } = await this.postService.getPosts(
                 {

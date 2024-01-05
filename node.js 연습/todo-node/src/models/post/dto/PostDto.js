@@ -24,7 +24,7 @@ export class PostDto {
         this.content = props.content;
         this.create_time = props.create_time;
         this.update_time = props.create_time;
-        this.like_post = props.like_post.length;
+        this.like_post = props.like_post;
         this.member = new MemberDto(props.member);
         this.tag = props.tag.map(
             (t) =>

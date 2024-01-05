@@ -1,16 +1,16 @@
 import bcrypt from "bcryptjs";
 
 export class LoginDTO {
-  email;
+  login_id;
   password;
 
   constructor(props) {
-    this.email = props.email;
+    this.login_id = props.login_id;
     this.password = props.password;
   }
 
   async comparePassword(password) {
-    const isCorrect = await bcrypt.compare(this.password, password);
-    return isCorrect;
+    return await bcrypt.compare(this.password, password);
+
   }
 }

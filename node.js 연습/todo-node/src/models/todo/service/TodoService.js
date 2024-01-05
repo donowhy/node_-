@@ -53,6 +53,7 @@ export class TodoService {
                 important: props.body.important,
                 local_date: props.body.local_date,
                 update_time: getCurrentTimeFormatted(),
+                checked: false
             },
         });
     }
@@ -99,6 +100,7 @@ export class TodoService {
             orderBy: {
                 local_date: "desc",
             },
+
         });
         const count = await database.todo_list.count({
             where: {

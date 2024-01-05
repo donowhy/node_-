@@ -14,7 +14,7 @@ class AuthController {
     }
 
     init() {
-        this.router.post("/register", this.register.bind(this));
+        this.router.post("/sign-up", this.register.bind(this));
         this.router.post("/login", this.login.bind(this));
         this.router.post("/refresh", this.refresh.bind(this));
     }
@@ -22,6 +22,7 @@ class AuthController {
     async register(req, res, next) {
         try {
             const body = req.body;
+            console.log(body);
 
             const { accessToken, refreshToken } =
                 await this.authService.register(new RegisterDTO(body));
@@ -38,6 +39,7 @@ class AuthController {
     async login(req, res, next) {
         try {
             const body = req.body;
+            console.log(body);
 
             const { accessToken, refreshToken } = await this.authService.login(
                 new LoginDTO(body)
