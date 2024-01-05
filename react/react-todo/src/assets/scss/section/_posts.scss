@@ -1,0 +1,95 @@
+// Post.module.scss
+.posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  .search-bar {
+    width: 100%;
+    margin-bottom: 20px;
+
+    input[type="text"] {
+      width: calc(100% - 120px);
+      padding: 10px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #ec1588;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #f10a47;
+      }
+    }
+  }
+
+  .post-list {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+
+    .post-item {
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      transition: box-shadow 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      }
+
+      .post-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      .post-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: #666;
+        margin-top: 10px;
+
+        .post-time {
+          // 스타일이 필요하다면 여기에 추가
+        }
+
+        .post-author {
+          // 스타일이 필요하다면 여기에 추가
+        }
+      }
+    }
+  }
+
+  .create-post-button {
+    width: 100px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #ec1588;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #f10a47;
+    }
+  }
+
+  .total-count {
+    margin-top: 15px;
+  }
+}

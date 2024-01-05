@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
-    const [ searchKeyword, setSearchKeyword ] = useState('');
+    const [ searchValue, setSearchValue ] = useState('');
     const navigate = useNavigate();
 
     const handleSearch = () => {
-        console.log(searchKeyword);
-        if(searchKeyword){
-            navigate(`/search/${searchKeyword}`);
-            setSearchKeyword('');
+        console.log(searchValue);
+        if(searchValue){
+            navigate(`/posts/${searchValue}`);
+            setSearchValue('');
         }
     }
 
@@ -26,7 +26,7 @@ const Search = () => {
                     autoComplete='off'
                     className='search__input'
                     placeholder='검색어를 입력해주세요!'
-                    onChange={e => setSearchKeyword(e.target.value)}
+                    onChange={e => setSearchValue(e.target.value)}
                     onKeyDown={e => {
                         if(e.key === 'Enter'){
                             handleSearch();

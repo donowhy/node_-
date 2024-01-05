@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d7560dd7-4b60-4fce-9230-63006758f73b" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/../node.js 연습/todo-node/.idea/sonarlint/issuestore/4/e/4e0c8911e401e7557a7c256f04074dd4bf0bb678" beforeDir="false" afterPath="$PROJECT_DIR$/../node.js 연습/todo-node/.idea/sonarlint/issuestore/4/e/4e0c8911e401e7557a7c256f04074dd4bf0bb678" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node.js 연습/todo-node/.idea/sonarlint/issuestore/8/a/8a4d0eeadcfcd7fe103d6fd1fe4f813c0249bbc3" beforeDir="false" afterPath="$PROJECT_DIR$/../node.js 연습/todo-node/.idea/sonarlint/issuestore/8/a/8a4d0eeadcfcd7fe103d6fd1fe4f813c0249bbc3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node.js 연습/todo-node/.idea/sonarlint/issuestore/b/c/bcc113a9851a504a221697b9805e27260861f3c0" beforeDir="false" afterPath="$PROJECT_DIR$/../node.js 연습/todo-node/.idea/sonarlint/issuestore/b/c/bcc113a9851a504a221697b9805e27260861f3c0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node.js 연습/todo-node/.idea/sonarlint/issuestore/d/d/dd7063ba8be1a1fcaff3a246029cdab91ccb0ba7" beforeDir="false" afterPath="$PROJECT_DIR$/../node.js 연습/todo-node/.idea/sonarlint/issuestore/d/d/dd7063ba8be1a1fcaff3a246029cdab91ccb0ba7" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node.js 연습/todo-node/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../node.js 연습/todo-node/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node.js 연습/todo-node/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../node.js 연습/todo-node/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/auth/controller/AuthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/auth/controller/AuthController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/auth/dto/login.dto.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/auth/dto/login.dto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/auth/service/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/auth/service/AuthService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/members/controller/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/members/controller/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/members/service/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/members/service/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/post/controller/PostController.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/post/controller/PostController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/post/service/PostService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/post/service/PostService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/todo/service/TodoService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node.js 연습/todo-node/src/models/todo/service/TodoService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project-spring/src/main/java/toyproject/todoList/domain/member/repository/CustomMemberRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../project-spring/src/main/java/toyproject/todoList/domain/member/repository/CustomMemberRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/.idea/sonarlint/issuestore/6/2/62791a018a7db9ec3e744a83bacabb9d101cd125" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/.idea/sonarlint/issuestore/b/1/b1797eed76aa0adae08ad0a86e8d1216e7d647e8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/.idea/sonarlint/issuestore/b/7/b7b02b8984194e83613248d0cf4db36c83699b9a" beforeDir="false" afterPath="$PROJECT_DIR$/../react/.idea/sonarlint/issuestore/b/7/b7b02b8984194e83613248d0cf4db36c83699b9a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/.idea/sonarlint/issuestore/b/e/beb9b1210abe970fcb65cff730af36b34d8d90da" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/.idea/sonarlint/issuestore/b/f/bffb9906b93a7eb4cd76363eae14a4c24c9f8c8f" beforeDir="false" afterPath="$PROJECT_DIR$/../react/.idea/sonarlint/issuestore/b/f/bffb9906b93a7eb4cd76363eae14a4c24c9f8c8f" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/.idea/sonarlint/issuestore/f/d/fd1ea7acac46307b8d7eac770dfa7750cc429a44" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../react/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/.idea/sonarlint/securityhotspotstore/6/2/62791a018a7db9ec3e744a83bacabb9d101cd125" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/.idea/sonarlint/securityhotspotstore/b/1/b1797eed76aa0adae08ad0a86e8d1216e7d647e8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/.idea/sonarlint/securityhotspotstore/b/e/beb9b1210abe970fcb65cff730af36b34d8d90da" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/.idea/sonarlint/securityhotspotstore/f/d/fd1ea7acac46307b8d7eac770dfa7750cc429a44" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../react/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/my-app/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../react/my-app/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/my-app/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../react/my-app/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/react-todo/src/data/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/react-todo/src/data/header.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2aSzTUaRTcDde0GDGDrRWYkqoLd" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "nodejs_package_manager_path": "yarn",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="d7560dd7-4b60-4fce-9230-63006758f73b" name="변경" comment="" />
+      <created>1704326775346</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1704326775346</updated>
+      <workItem from="1704326776573" duration="7000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

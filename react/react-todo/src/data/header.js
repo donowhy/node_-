@@ -8,6 +8,10 @@ export const headerMenus = [
         src: "/"
     },
     {
+        title: "TODAY",
+        src: "/to-do/today"
+    },
+    {
         title: "TODO",
         src: "/to-do"
     },
@@ -22,6 +26,14 @@ export const headerMenus = [
     {
         title: "MYPAGE",
         src: "/member/my-page"
+    },
+    {
+        title: "SINGUP",
+        src: "/sign-up"
+    },
+    {
+        title: "LOGIN",
+        src: "/login"
     },
 ];
 

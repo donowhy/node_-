@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import Main from "../../components/section/Main";
 class RegisterDTO {
     constructor(login_id, nickname, email, password) {
         this.login_id = login_id;
@@ -50,47 +51,66 @@ const Signup = () => {
 
 
     return (
-        <div>
-            <label htmlFor="login_id">Login ID:</label>
+        <Main>
+        <div className='signup'>
+            <ul className='navigation'>
+                <li>
+                    Sign Up
+                </li>
+                <li>
+                    <Link
+                        to="/login"
+                    >
+                        Sign In
+                    </Link>
+                </li>
+            </ul>
+            <label htmlFor="login_id" className='login_id'></label>
             <input
+                className='login_input'
                 type="text"
-                id="login_id"
+                placeholder="login_id"
                 name="login_id"
                 value={registerData.login_id}
                 onChange={handleChange}
             />
 
-            <label htmlFor="nickname">Nickname:</label>
+            <label htmlFor="nickname" className='nickname'></label>
             <input
+                className='nickname_input'
                 type="text"
-                id="nickname"
+                placeholder="nickname"
                 name="nickname"
                 value={registerData.nickname}
                 onChange={handleChange}
             />
 
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email" className='email'></label>
             <input
+                className='email_input'
                 type="email"
-                id="email"
+                placeholder="email"
                 name="email"
                 value={registerData.email}
                 onChange={handleChange}
             />
 
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password" className='password'></label>
             <input
+                className='password_input'
                 type="password"
-                id="password"
+                placeholder="password"
                 name="password"
                 value={registerData.password}
                 onChange={handleChange}
             />
 
-            <button type="button" onClick={handleSubmit}>
-                Submit
+            <button type="button" onClick={handleSubmit} className='button'>
+                SignUp
             </button>
+
         </div>
+        </Main>
     );
 };
 

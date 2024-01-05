@@ -9,7 +9,6 @@ const Main = (props) => {
         <div>
             <Header />
             <main id='main' role='main'>
-                <Search />
                 {props.children}
             </main>
             <Footer />

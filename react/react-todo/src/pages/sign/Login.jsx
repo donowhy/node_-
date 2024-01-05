@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import Main from "../../components/section/Main";
 
 function LoginPage() {
 
@@ -52,23 +53,33 @@ function LoginPage() {
     }
 
     return (
-        <div style={{
-            display: 'flex', justifyContent: 'center', alignItems: 'center',
-            width: '100%', height: '100vh'
-        }}>
-            <form style={{ display: 'flex', flexDirection: 'column'}}
-                  onSubmit={onSubmitHandler}
-            >
-                <label>Id</label>
-                <input type='id' value={loginId} onChange={onLoginIdHandler}/>
-                <label>Password</label>
-                <input type='password' value={password} onChange={onPasswordHandler}/>
-                <br />
-                <button type="submit">
-                    Login
-                </button>
-            </form>
-        </div>
+        <Main>
+            <div className='signup'>
+
+                    <ul className='navigationSign'>
+                        <li>
+                            <Link
+                                to="/sign-up"
+                            >
+                                Sign Up
+                            </Link>
+                        </li>
+                        <li>
+                            Sign In
+
+                        </li>
+                    </ul>
+
+
+                    <input type='id' className='login_input' placeholder="login_id" value={loginId} onChange={onLoginIdHandler}/>
+                    <input type='password' className='password_input' placeholder="password" value={password} onChange={onPasswordHandler}/>
+                    <br/>
+                    <button type="submit" className='button' onClick={onSubmitHandler}>
+                        Login
+                    </button>
+
+            </div>
+        </Main>
     )
 }
 

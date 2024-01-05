@@ -1,0 +1,80 @@
+// TodoList.scss
+.todo-list {
+  &__group {
+    margin: 20px 100px;
+    display: flex;
+    justify-content: center;
+
+    flex-direction: column;
+    text-transform: uppercase;
+  }
+
+  &__date {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    gap: 10px;
+
+    .todo-list__item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      cursor: pointer;
+      border: 1px solid gray;
+      padding: 10px;
+
+      &.checked {
+        .todo-list__content {
+          text-decoration: line-through;
+        }
+      }
+
+      .todo-list__checkbox {
+        font-size: 20px;
+        margin-right: 10px;
+      }
+
+      .todo-list__content {
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .todo-list__important {
+        font-size: 12px;
+        color: gray;
+        margin-right: 10px;
+      }
+
+      .todo-list__location {
+        font-size: 12px;
+        color: gray;
+      }
+    }
+  }
+
+  &__create-button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}

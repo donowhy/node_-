@@ -1,51 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import Main from '../../components/section/Main';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Search from "../../components/section/Search";
 
 const Post = () => {
     const [posts, setPosts] = useState([]);
     const [count, setCount] = useState(0);
     const [searchValue, setSearchValue] = useState("");
-    const [token, setToken] = useState(""); // State to store the token
+    const navigateFunction = useNavigate();
 
-    useEffect(() => {
-        // Retrieve token from localStorage on component mount
-        const storedToken = localStorage.getItem('login-token');
-        if (storedToken) {
-            setToken(storedToken);
+    // Fetch posts from API
+    const fetchData = async () => {
+        const token = localStorage.getItem('login-token'); // Directly get the token from localStorage
+        let url = 'http://localhost:8000/posts';
+        if (searchValue) {
+            url += `?searchValue=${encodeURIComponent(searchValue)}`;
         }
-    }, []);
-
-
-    let navigateFunction = useNavigate();
-
-    const handleCreateTodo = () => {
-        // '할 일 작성' 버튼 클릭 시, 할 일 작성 페이지로 이동
-        navigateFunction('/post/register');
-    };
-
-    const getData = async (e) => {
-        e.preventDefault();
 
         try {
-            // Build the URL based on the presence of searchValue
-            let url = 'http://localhost:8000/posts';
-            if (searchValue) {
-                url += `?searchValue=${searchValue}`;
-            }
-
             const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    // Include the token in the headers if available
                     'Authorization': `Bearer ${token}`,
                 },
             });
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
                 setPosts(data.posts);
                 setCount(data.count);
             } else {
@@ -56,30 +38,40 @@ const Post = () => {
         }
     };
 
-    return (
-        <Main
-            title="Home"
-            description="HOME"
-        >
-            <div>
-                <form onSubmit={getData}>
-                    <label>
-                        Search:
-                        <input type="text" value={searchValue}
-                               onChange={(e) =>
-                                   setSearchValue(e.target.value)}/>
 
-                    </label>
-                    <button type="submit">Fetch Posts</button>
-                </form>
-                <h2>게시물</h2>
-                <ul>
+
+    useEffect(() => {
+        fetchData(); // Call fetch data function
+    }, [searchValue]); // If searchValue changes, fetch data again
+
+    const handleCreatePost = () => {
+        navigateFunction('/post/register');
+    };
+
+    const handleLinkTo = (id) => {
+        return () => navigateFunction(`/post/${id}`);
+    }
+
+
+    return (
+        <Main title="Home" description="HOME">
+            <div className='posts'>
+                <Search/>
+
+                <ul className='post-list'>
                     {posts.map((post) => (
-                        <li key={post.id}>{post.title} {post.create_time} {post.member.login_id}</li>
+                        <li key={post.id} className='post-item' onClick={handleLinkTo(post.id)}>
+                            <div className='post-title'>{post.title}</div>
+                            <div className='post-meta'>
+                                <span className='post-time'>{post.create_time}</span>
+                                <span className='post-author'>{post.member.login_id}</span>
+                            </div>
+                        </li>
                     ))}
                 </ul>
-                <p>Total Count: {count}</p>
-                <button onClick={handleCreateTodo}>할 일 작성</button>
+
+                <p className='total-count'>Total Count: {count}</p>
+                <button className='create-post-button' onClick={handleCreatePost}>게시물 작성</button>
             </div>
         </Main>
     );

@@ -1,4 +1,4 @@
-// TodoList.jsx
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Main from '../components/section/Main';
@@ -66,34 +66,52 @@ const TodoList = () => {
             // Update the local state
             const updatedTodos = todos.map((todo) => (todo.id === id ? { ...todo, checked: newCheckedValue } : todo));
             setTodos(updatedTodos);
-
         } catch (error) {
             console.error('Error updating todo:', error);
         }
     };
 
+    const groupTodosByDate = () => {
+        const groupedTodos = {};
+        todos.forEach((todo) => {
+            const date = new Date(todo.local_date).toISOString().split('T')[0];
+            if (groupedTodos[date]) {
+                groupedTodos[date].push(todo);
+            } else {
+                groupedTodos[date] = [todo];
+            }
+        });
+        return groupedTodos;
+    };
 
     return (
         <Main title="today tasks" description="오늘의 할 일들 입니다.">
             {loading ? (
                 <p>Loading...</p>
             ) : (
-                <div>
-                    <ul>
-                        {todos.map((todo) => (
-                            <li key={todo.id} onClick={() => handleToggleChecked(todo.id, todo.checked)}>
-                                {todo.checked ? (
-                                    <span>☑</span>
-                                ) : (
-                                    <span>□</span>
-                                )}
-                                <strong>할 일 이름 {todo.content}</strong>
-                                <p>중요도: {todo.important}</p>
-                                <p>계획된 날짜: {new Date(todo.local_date).toISOString().split('T')[0]}</p>
-                            </li>
-                        ))}
-                    </ul>
-                    <button onClick={handleCreateTodo}>할 일 작성</button>
+                <div className="todo-list">
+                    {Object.entries(groupTodosByDate()).map(([date, todos]) => (
+                        <div key={date} className="todo-list__group">
+                            <h3 className="todo-list__date">{date}</h3>
+                            <ul className="todo-list__list">
+                                {todos.map((todo) => (
+                                    <li
+                                        key={todo.id}
+                                        className={`todo-list__item ${todo.checked ? 'checked' : ''}`}
+                                        onClick={() => handleToggleChecked(todo.id, todo.checked)}
+                                    >
+                                        <span className="todo-list__checkbox">{todo.checked ? '☑' : '□'}</span>
+                                        <strong className="todo-list__content">{todo.content}</strong>
+                                        <p className="todo-list__important">{todo.important}</p>
+                                        <p className="todo-list__location">{todo.location}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                    <button className="todo-list__create-button" onClick={handleCreateTodo}>
+                        할 일 작성
+                    </button>
                 </div>
             )}
         </Main>
