@@ -68,41 +68,43 @@ const TodayTodoList = () => {
 
     return (
         <Main title="Today's tasks" description="오늘의 할 일들 입니다.">
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                <ul>
-                    {todos.length > 0 ? (
-                        <>
-                            <p>할 일 today</p>
-                            <p>
-                                <h3>{todos[0].local_date}</h3>
-                            </p>
-                            {todos.map((todo) => (
-                                <li key={todo.id} onClick={() => handleToggleChecked(todo.id, todo.checked)}>
-                                    {todo.checked ? (
-                                        <span>☑</span>
-                                    ) : (
-                                        <span>□</span>
-                                    )}
-                                    <strong>할 일 이름 {todo.content}</strong>
-                                    <p>중요도 : {todo.important}</p>
-                                    {/* 기타 필요한 정보들을 표시할 수 있음 */}
-                                </li>
-                            ))}
-                            <button onClick={handleCreateTodo}>할 일 작성</button>
-                        </>
-                    ) : (
-                        <>
-                            <p>오늘의 할 일을 작성해주세요.</p>
-                            <button onClick={handleCreateTodo}>할 일 작성</button>
-                        </>
-                    )}
-        </ul>
-    )
-}
-</Main>
-    );
+            <div className="today-todo-list">
+                {loading ? (
+                    <p>Loading...</p>
+                ) : (
+                    <ul>
+                        {todos.length > 0 ? (
+                            <>
+                                <p>할 일 today</p>
+                                <p>
+                                    <h3>{todos[0].local_date}</h3>
+                                </p>
+                                {todos.map((todo) => (
+                                    <li key={todo.id} onClick={() => handleToggleChecked(todo.id, todo.checked)}>
+                                        {todo.checked ? (
+                                            <span>☑</span>
+                                        ) : (
+                                            <span>□</span>
+                                        )}
+                                        <strong>할 일 이름 {todo.content}</strong>
+                                        <p>중요도 : {todo.important}</p>
+                                        {/* 기타 필요한 정보들을 표시할 수 있음 */}
+                                    </li>
+                                ))}
+                                <button onClick={handleCreateTodo}>할 일 작성</button>
+                            </>
+                        ) : (
+                            <>
+                                <p>오늘의 할 일을 작성해주세요.</p>
+                                <button onClick={handleCreateTodo}>할 일 작성</button>
+                            </>
+                        )}
+                    </ul>
+                )
+                }
+            </div>
+        </Main>
+);
 };
 
 export default TodayTodoList;

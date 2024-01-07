@@ -1,0 +1,42 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+  background-color: #000; // 검은색 배경
+  color: #fff; // 흰색 텍스트
+  padding: 20px;
+  border-radius: 10px;
+
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0 auto 20px;
+  }
+
+  .navigation-buttons {
+    display: flex;
+    gap: 10px; // 버튼 사이의 간격
+
+    .nav-button {
+      background-color: #444;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none; // 링크 기본 스타일 제거
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #555; // 호버 효과
+      }
+    }
+  }
+}

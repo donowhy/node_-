@@ -1,80 +1,81 @@
-// TodoList.scss
 .todo-list {
-  &__group {
-    margin: 20px 100px;
-    display: flex;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  background-color: #000; // 검은색 배경
+  color: #fff; // 흰색 텍스트
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 
-    flex-direction: column;
-    text-transform: uppercase;
+  &__group {
+    margin-bottom: 20px;
   }
 
   &__date {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 1.5em;
     margin-bottom: 10px;
-    padding: 5px;
   }
 
   &__list {
     list-style: none;
     padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 3fr);
-    gap: 10px;
+  }
 
-    .todo-list__item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      cursor: pointer;
-      border: 1px solid gray;
-      padding: 10px;
+  &__item {
+    background-color: #222; // 어두운 항목 배경
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
 
-      &.checked {
-        .todo-list__content {
-          text-decoration: line-through;
-        }
-      }
+    &:hover {
+      background-color: #333;
+    }
 
-      .todo-list__checkbox {
-        font-size: 20px;
-        margin-right: 10px;
-      }
+    &.checked {
+      text-decoration: line-through;
+      color: #777;
+    }
 
-      .todo-list__content {
-        font-weight: bold;
-        margin-right: 10px;
-      }
+    &__checkbox {
+      margin-right: 10px;
+      color: #4CAF50; // 체크박스 색상
+    }
 
-      .todo-list__important {
-        font-size: 12px;
-        color: gray;
-        margin-right: 10px;
-      }
+    &__content {
+      flex-grow: 1;
+    }
 
-      .todo-list__location {
-        font-size: 12px;
-        color: gray;
-      }
+    &__important {
+      margin-left: auto;
+      padding: 0 10px;
+    }
+
+    &__location {
+      font-style: italic;
+      color: #aaa; // 위치 텍스트 색상
     }
   }
 
   &__create-button {
-    display: block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #4CAF50;
     color: white;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1em;
+    transition: background-color 0.3s;
 
     &:hover {
-      background-color: #0056b3;
+      background-color: #45a049;
     }
   }
 }

@@ -1,12 +1,13 @@
 // TodoRegister.jsx
 import React, { useState } from 'react';
 import Main from "../components/section/Main";
+import {useNavigate} from "react-router-dom";
 
 const TodoRegister = () => {
     const [content, setContent] = useState('');
     const [important, setImportant] = useState('LOW');
     const [localDate, setLocalDate] = useState('');
-
+    let navigateFunction = useNavigate();
     const handleContentChange = (e) => {
         setContent(e.target.value);
     };
@@ -42,6 +43,8 @@ const TodoRegister = () => {
             } else {
                 console.error('Failed to register todo');
             }
+
+            navigateFunction("/to-do")
         } catch (error) {
             console.error('Error registering todo:', error);
         }
@@ -49,29 +52,31 @@ const TodoRegister = () => {
 
     return (
         <Main>
-        <div>
-            <h2>Todo Register</h2>
-            <label>
-                Content:
-                <input type="text" value={content} onChange={handleContentChange} />
-            </label>
-            <br />
-            <label>
-                Importance:
-                <select value={important} onChange={handleImportantChange}>
-                    <option value="LOW">Low</option>
-                    <option value="MIDDLE">Medium</option>
-                    <option value="HIGH">High</option>
-                </select>
-            </label>
-            <br />
-            <label>
-                Local Date:
-                <input type="date" value={localDate} onChange={handleLocalDateChange} />
-            </label>
-            <br />
-            <button onClick={handleTodoRegister}>Register Todo</button>
-        </div>
+            <div className="todo-register-container">
+                <h2>Todo Register</h2>
+                <label>
+                    Content:
+                    <input type="text" value={content} onChange={handleContentChange}/>
+                </label>
+                <br/>
+                <label>
+                    Importance:
+                    <select value={important} onChange={handleImportantChange}>
+                        <option value="LOW">Low</option>
+                        <option value="MIDDLE">Medium</option>
+                        <option value="HIGH">High</option>
+                    </select>
+                </label>
+                <br/>
+                <label>
+                    Local Date:
+                    <input type="date" value={localDate} onChange={handleLocalDateChange}/>
+                </label>
+                <br/>
+                <button onClick={handleTodoRegister}>
+                    Register Todo
+                </button>
+            </div>
         </Main>
     );
 };
