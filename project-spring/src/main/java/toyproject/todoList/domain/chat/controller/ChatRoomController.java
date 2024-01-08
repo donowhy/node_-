@@ -51,7 +51,7 @@ public class ChatRoomController {
 
     // 채팅방 개설
     @PostMapping(value = "/room")
-    public Long create(@RequestBody String name) {
+    public Integer create(@RequestBody String name) {
         log.info("# Create Chat Room, name: [{}]", name);
 
         ChatRoom chatRoom = ChatRoom.builder()
@@ -63,29 +63,8 @@ public class ChatRoomController {
         return chatRoom.getId();
     }
 
-    // 채팅방 조회
-//	@GetMapping("/room/{roomId}")
-//	public Page<ChatRequest> getRoom(@PathVariable Long roomId, @MemberInfo MembersInfo membersInfo, Pageable pageable) {
-//		log.info("# get Char Room, roomId = [{}]", roomId);
-//
-//		Page<ChatDocument> chatDocuments = chatRepository.findByRoomIdxOrderByCreatedAtDesc(roomId, pageable);
-//        return chatDocuments.map(this::convertToChatRequest);
-//	}
-//
-//	private ChatRequest convertToChatRequest(ChatDocument chatDocument) {
-//
-//		return ChatRequest.builder()
-//				.roomidx(chatDocument.getRoomIdx())
-//				.email(chatDocument.getEmail())
-//				.sender(chatDocument.getSenderName())
-//				.msg(chatDocument.getMsg())
-//				.imageUrl(chatDocument.getImageUrl())
-//				.time(chatDocument.getCreatedAt())
-//				.build();
-//	}
-
     @GetMapping("/room/{roomId}/{page}")
-    public ChatResponse getRoom(@PathVariable Long roomId, @MemberInfo MembersInfo membersInfo,
+    public ChatResponse getRoom(@PathVariable Integer roomId, @MemberInfo MembersInfo membersInfo,
                                 @PathVariable int page) {
         log.info("# get Char Room, roomId = [{}]", roomId);
 

@@ -10,6 +10,7 @@ import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 import toyproject.todoList.domain.chat.constants.KafkaConstants;
 import toyproject.todoList.domain.chat.entity.ChatDocument;
+import toyproject.todoList.domain.chat.service.dto.ChatRequest;
 
 
 import java.util.HashMap;
@@ -20,7 +21,7 @@ import java.util.Map;
 public class ProducerConfig {
 
     @Bean
-    public ProducerFactory<String, ChatDocument> producerFactory() {
+    public ProducerFactory<String, ChatRequest> producerFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigurations());
     }
 
@@ -34,7 +35,7 @@ public class ProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, ChatDocument> kafkaTemplate() {
+    public KafkaTemplate<String, ChatRequest> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }

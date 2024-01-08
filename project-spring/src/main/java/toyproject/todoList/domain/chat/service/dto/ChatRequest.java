@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 public class ChatRequest {
 
-    private Long roomidx;
+    private Integer roomidx;
     private String sender;
     private String msg;
     private String time;

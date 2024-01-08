@@ -17,12 +17,12 @@ public class ChatRoom {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String roomId;
 
     @Builder
-    public ChatRoom(Long id, String roomId) {
+    public ChatRoom(Integer id, String roomId) {
         this.id = id;
         this.roomId = roomId;
     }

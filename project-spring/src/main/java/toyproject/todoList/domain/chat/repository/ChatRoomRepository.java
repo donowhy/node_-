@@ -7,7 +7,7 @@ import toyproject.todoList.domain.chat.entity.ChatRoom;
 import java.util.List;
 import java.util.Optional;
 
-public interface ChatRoomRepository extends JpaRepository<ChatRoom, Long> {
+public interface ChatRoomRepository extends JpaRepository<ChatRoom, Integer> {
 
     @Query("select m from ChatRoom  m")
     List<ChatRoom> findAllRooms();

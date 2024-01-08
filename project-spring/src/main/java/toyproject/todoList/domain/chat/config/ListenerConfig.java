@@ -11,6 +11,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import toyproject.todoList.domain.chat.constants.KafkaConstants;
 import toyproject.todoList.domain.chat.entity.ChatDocument;
+import toyproject.todoList.domain.chat.service.dto.ChatRequest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,15 +21,15 @@ import java.util.Map;
 public class ListenerConfig {
 
     @Bean
-    ConcurrentKafkaListenerContainerFactory<String, ChatDocument> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, ChatDocument> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    ConcurrentKafkaListenerContainerFactory<String, ChatRequest> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, ChatRequest> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
 
     @Bean
-    public ConsumerFactory<String, ChatDocument> consumerFactory() {
-        return new DefaultKafkaConsumerFactory<>(consumerConfigurations(), new StringDeserializer(), new JsonDeserializer<>(ChatDocument.class));
+    public ConsumerFactory<String, ChatRequest> consumerFactory() {
+        return new DefaultKafkaConsumerFactory<>(consumerConfigurations(), new StringDeserializer(), new JsonDeserializer<>(ChatRequest.class));
     }
 
     @Bean

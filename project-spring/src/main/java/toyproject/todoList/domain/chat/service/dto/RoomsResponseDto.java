@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class RoomsResponseDto {
 
     private String roomName;
-    private Long roomNumber;
+    private Integer roomNumber;
 }
 

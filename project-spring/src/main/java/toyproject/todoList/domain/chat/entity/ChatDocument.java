@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Entity
 @Getter
@@ -17,18 +19,19 @@ public class ChatDocument {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Integer id;
 
-    private Long roomIdx;
+    private Integer roomIdx;
 
     private String senderName;
 
     private String msg;
 
-    private final String createdAt = String.valueOf(LocalDateTime.now());
+    private final String createdAt = LocalDateTime.now().format(
+            DateTimeFormatter.ofPattern("MM월 dd일 a hh:mm", Locale.KOREAN));
 
     @Builder
-    public ChatDocument(Long roomIdx, String senderName, String msg, String createdAt) {
+    public ChatDocument(Integer roomIdx, String senderName, String msg) {
         this.roomIdx = roomIdx;
         this.senderName = senderName;
         this.msg = msg;

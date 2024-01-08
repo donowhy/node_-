@@ -7,6 +7,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 import toyproject.todoList.domain.chat.constants.KafkaConstants;
 import toyproject.todoList.domain.chat.entity.ChatDocument;
+import toyproject.todoList.domain.chat.service.dto.ChatRequest;
 
 @Slf4j
 @Component
@@ -19,8 +20,10 @@ public class MessageListener {
             topics = KafkaConstants.KAFKA_TOPIC,
             groupId = KafkaConstants.GROUP_ID
     )
-    public void listen(ChatDocument message) {
+    public void listen(ChatRequest message) {
         log.info("sending via kafka listener..");
-        template.convertAndSend("/topic/group", message);
+        template.convertAndSend("/topic/group/" + message.getRoomidx(), message);
+        log.info(" url : /topic/group/{}",message.getRoomidx());
     }
+
 }
