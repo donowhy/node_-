@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import Main from "../components/section/Main";
 import base64 from 'base-64';
 
 const MyPage = () => {
     const [member, setMember] = useState(null);
     const [loading, setLoading] = useState(true);
-
     const { id } = useParams();
-
+    const navigateFunction = useNavigate();
     useEffect(() => {
         const fetchMember = async () => {
             try {
                 const accessToken = localStorage.getItem('login-token');
                 if (!accessToken) {
                     console.error('No access token available');
+                    navigateFunction('/')
                     setLoading(false);
                     return;
                 }

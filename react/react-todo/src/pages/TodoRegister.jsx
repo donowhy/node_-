@@ -23,7 +23,11 @@ const TodoRegister = () => {
     const handleTodoRegister = async () => {
         try {
             const accessToken = localStorage.getItem('login-token');
-
+            if (!accessToken) {
+                console.error('No access token available');
+                navigateFunction('/')
+                return;
+            }
             const response = await fetch('http://localhost:8000/todo/register', {
                 method: 'POST',
                 headers: {

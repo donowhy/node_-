@@ -1,0 +1,5 @@
+
+bjavascript:S1481	"?Remove the declaration of the unused 'setSearchValue' variable.(¸Ì¦ü8ˆÆ¶Î1
+_javascript:S1854	"<Remove this useless assignment to variable "setSearchValue".(¸Ì¦ü8ˆÆ¶Î1
+zjavascript:S6847D"RNon-interactive elements should not be assigned mouse or keyboard event listeners.(•šÌ”üÿÿÿÿ8ˆÆ¶Î1
+‡javascript:S1082D"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(•šÌ”üÿÿÿÿ8ˆÆ¶Î1

@@ -35,6 +35,10 @@ export const headerMenus = [
         title: "LOGIN",
         src: "/login"
     },
+    {
+        title: "LOGOUT",
+        src: "/logout"
+    },
 ];
 
 

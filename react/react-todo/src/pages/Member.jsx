@@ -1,32 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import Main from "../components/section/Main";
+import { useNavigate } from "react-router-dom";
 
 const Member = () => {
-    const [member, setMember] = useState(null);
+    const [members, setMembers] = useState(null); // 상태 설정 함수 이름 오타 수정
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate(); // 함수 이름을 좀 더 일반적인 형태로 수정
 
     useEffect(() => {
         const fetchMember = async () => {
             try {
-                // 예시로 멤버 ID를 1로 설정. 실제 애플리케이션에서는 동적으로 설정 필요
-                const response = await fetch('http://localhost:8000/members/');
-                console.log(response, "RESPONSE")
+                const accessToken = localStorage.getItem('login-token');
+                if (!accessToken) {
+                    console.error('No access token available');
+                    navigate('/'); // navigateFunction을 navigate로 변경
+                    setLoading(false);
+                    return;
+                }
+                const response = await fetch('http://localhost:8000/members', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                });
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
 
                 const data = await response.json();
-                setMember(data.member);
+                console.log(data, "DATA");
+                setMembers(data.members); // 상태 설정 함수 이름 오타 수정
             } catch (err) {
                 setError(err.message);
             } finally {
                 setLoading(false);
             }
         };
-
         fetchMember();
-    }, []);
+    }, [navigate]); // useEffect 의존성 배열에 navigate 추가
 
     if (loading) {
         return <Main title="Member Page" description="멤버의 페이지 입니다."><p>Loading...</p></Main>;
@@ -36,29 +49,36 @@ const Member = () => {
         return <Main title="Member Page" description="멤버의 페이지 입니다."><p>Error: {error}</p></Main>;
     }
 
+    // 멤버 상세 페이지로 이동하는 함수
+    // const goToMemberDetail = (memberId) => {
+    //     navigate(`/members/detail/${memberId}`);
+    // };
+
+    const handleLinkTo = (memberId) => {
+        return () => navigate(`/members/detail/${memberId}`);
+    }
+
     return (
         <Main title="Member Page" description="멤버의 페이지 입니다.">
-            <div>
-                {member ? (
-                    <div>
-                        <h2>{member.nickname}'s Profile</h2>
-                        <p>Email: {member.email}</p>
-                        <p>Nickname: {member.nickname}</p>
-                        {/* 기타 멤버 정보 표시 */}
-                        <div>
-                            <h3>Posts</h3>
-                            {member.posts.map(post => (
-                                <div key={post.title}>
-                                    <h4>{post.title}</h4>
-                                    <p>{post.content}</p>
-                                    {/* 기타 포스트 정보 */}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                ) : (
-                    <p>Member not found.</p>
+            <div className= 'memberPage'>
+                {loading && <p className='loading'>Loading...</p>}
+                {error && <p className='errorMessage'>Error: {error}</p>}
+                {!loading && !error && members && (
+                    <ul className='memberList'>
+                        {members.map((member, index) => (
+                            <li key={index} className='memberItem' onClick={handleLinkTo(member.id)} >
+                                <h2>
+                                    {member.nickname}'s Profile
+                                </h2>
+                                <p >
+                                    {member.login_id}
+                                </p>
+                                <p>{member.nickname}</p>
+                            </li>
+                        ))}
+                    </ul>
                 )}
+                {!loading && !error && !members && <p className='noMembers'>Member not found.</p>}
             </div>
         </Main>
     );

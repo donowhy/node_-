@@ -8,6 +8,8 @@ import TodoRegister from "./pages/TodoRegister";
 import PostRegister from "./pages/posts/PostRegister";
 import PostDetail from "./pages/posts/PostDetail";
 import Chatapi from "./components/chat/Chatapi";
+import LogOut from "./pages/LogOut";
+import MemberPage from "./pages/MemberPage";
 const TodoList  = lazy(() => import ("./pages/TodoList"));
 const MyPage  = lazy(() => import ("./pages/MyPage"));
 const Member  = lazy(() => import ("./pages/Member"));
@@ -32,10 +34,12 @@ const App = () => {
                     <Route path='/search/:searchId' element={<Search />} />
                     <Route path="*" element={<Not />} />
                     <Route path="/member/my-page" element={<MyPage />} />
+                    <Route path="/members/detail/:id" element={<MemberPage/>}/>
                     <Route path="/member" element={<Member />} />
                     <Route path="/to-do/today" element={<TodayTodoList />} />
                     <Route path="/create-todo" element={<TodoRegister />} />
                     <Route path="/kafka" element={<Chatapi />} />
+                    <Route path="/logout" element={<LogOut />} />
                 </Routes>
             </Suspense>
         </BrowserRouter>

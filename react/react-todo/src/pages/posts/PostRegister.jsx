@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Main from "../../components/section/Main";
 import base64 from "base-64";
+import {useNavigate} from "react-router-dom";
 
 const PostRegister = () => {
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');  // Added dynamic title state
     const [registrationStatus, setRegistrationStatus] = useState(null);
     const [tags, setTags] = useState([]);
-
+    const navigateFunction = useNavigate();
     // Fetch the user ID from the token when the component mounts
     useEffect(() => {
         const fetchUserId = async () => {
             try {
                 const accessToken = localStorage.getItem('login-token');
-
+                if (!accessToken) {
+                    console.error('No access token available');
+                    navigateFunction('/')
+                    return;
+                }
                 let payload = accessToken.substring(accessToken.indexOf('.')+1,accessToken.lastIndexOf('.'));
                 let decoded = base64.decode(payload);
                 const decodedObject = JSON.parse(decoded);

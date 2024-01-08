@@ -12,7 +12,12 @@ const TodayTodoList = () => {
         const fetchData = async () => {
             try {
                 const accessToken = localStorage.getItem('login-token');
-
+                if (!accessToken) {
+                    console.error('No access token available');
+                    navigateFunction('/')
+                    setLoading(false);
+                    return;
+                }
                 const today = new Date().toISOString().split('T')[0]; // 오늘의 날짜를 ISO 형식으로 가져오기
 
                 const response = await fetch(`http://localhost:8000/todo?startdate=${today}&enddate=${today}`, {

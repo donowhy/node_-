@@ -17,7 +17,12 @@ const TodoList = () => {
         const fetchData = async () => {
             try {
                 const accessToken = localStorage.getItem('login-token');
-
+                if (!accessToken) {
+                    console.error('No access token available');
+                    navigateFunction('/')
+                    setLoading(false);
+                    return;
+                }
                 // useState로 관리하는 파라미터를 사용
                 const response = await fetch(`http://localhost:8000/todo?startdate=${startDateParam}&enddate=${endDateParam}`, {
                     headers: {

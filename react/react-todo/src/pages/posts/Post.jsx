@@ -11,7 +11,12 @@ const Post = () => {
 
     // Fetch posts from API
     const fetchData = async () => {
-        const token = localStorage.getItem('login-token'); // Directly get the token from localStorage
+        const token = localStorage.getItem('login-token');
+        if (!token) {
+            console.error('No access token available');
+            navigateFunction('/')
+            return;
+        }
         let url = 'http://localhost:8000/posts';
         if (searchValue) {
             url += `?searchValue=${encodeURIComponent(searchValue)}`;
