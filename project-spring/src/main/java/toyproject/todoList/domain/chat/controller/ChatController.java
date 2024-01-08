@@ -7,8 +7,9 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
-import toyproject.todoList.domain.chat.Message;
+import toyproject.todoList.domain.chat.entity.ChatDocument;
 import toyproject.todoList.domain.chat.constants.KafkaConstants;
+import toyproject.todoList.domain.chat.service.dto.ChatRequest;
 
 import java.time.LocalDateTime;
 
@@ -18,12 +19,11 @@ import java.time.LocalDateTime;
 @RequestMapping(value = "/kafka")
 public class ChatController {
     @Autowired
-    private KafkaTemplate<String, Message> kafkaTemplate;
+    private KafkaTemplate<String, ChatDocument> kafkaTemplate;
 
     @PostMapping(value = "/publish")
-    public void sendMessage(@RequestBody Message message) {
+    public void sendMessage(@RequestBody ChatDocument message) {
         log.info("Produce message : " + message.toString());
-        message.setTimestamp(LocalDateTime.now().toString());
         try {
             kafkaTemplate.send(KafkaConstants.KAFKA_TOPIC, message).get();
         } catch (Exception e) {
@@ -33,9 +33,13 @@ public class ChatController {
 
     @MessageMapping("/sendMessage")
     @SendTo("/topic/group")
-    public Message broadcastGroupMessage(@Payload Message message) {
-        log.info("========================들어옴 {}============", message);
-        return message;
+    public ChatRequest broadcastGroupMessage(@Payload ChatDocument message) {
+        return ChatRequest.builder()
+                .roomidx(message.getRoomIdx())
+                .sender(message.getSenderName())
+                .msg(message.getMsg())
+                .time(message.getCreatedAt())
+                .build();
     }
 
 }
