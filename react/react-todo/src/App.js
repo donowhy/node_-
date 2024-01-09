@@ -7,17 +7,17 @@ import TodayTodoList from "./pages/todo/TodayTodoList";
 import TodoRegister from "./pages/todo/TodoRegister";
 import PostRegister from "./pages/posts/PostRegister";
 import PostDetail from "./pages/posts/PostDetail";
-import Chatapi from "./components/chat/Chatapi";
 import LogOut from "./pages/sign/LogOut";
 import MemberPage from "./pages/member/MemberPage";
+import Chat from "./components/chat/Chat";
 const TodoList  = lazy(() => import ("./pages/todo/TodoList"));
 const MyPage  = lazy(() => import ("./pages/member/MyPage"));
 const Member  = lazy(() => import ("./pages/member/Member"));
 const Post  = lazy(() => import ("./pages/posts/Post"));
 
-const Home = lazy(() => import('./pages/Home'));
-const Search = lazy(() => import('./pages/Search'));
-const Not = lazy(() => import('./pages/Not'));
+const Home = lazy(() => import('./pages/basic/Home'));
+const Search = lazy(() => import('./pages/basic/Search'));
+const Not = lazy(() => import('./pages/basic/Not'));
 
 const App = () => {
     return (
@@ -38,7 +38,7 @@ const App = () => {
                     <Route path="/member" element={<Member />} />
                     <Route path="/to-do/today" element={<TodayTodoList />} />
                     <Route path="/create-todo" element={<TodoRegister />} />
-                    <Route path="/kafka" element={<Chatapi />} />
+                    <Route path="/kafka/:roomId" element={<Chat />} />
                     <Route path="/logout" element={<LogOut />} />
                 </Routes>
             </Suspense>

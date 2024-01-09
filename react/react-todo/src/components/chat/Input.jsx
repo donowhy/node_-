@@ -1,14 +1,16 @@
+// Input.js
 import React, { useState } from "react";
 
-function Input({ handleOnSubmit }) {
+function Input({roomId, onSendMessage}) {
     const [msg, setMsg] = useState("");
 
     const handleOnChange = (e) => {
         setMsg(e.target.value);
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleOnSubmit(msg);
+        onSendMessage(msg);
         setMsg("");
     };
 

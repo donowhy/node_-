@@ -1,5 +1,5 @@
 import React from 'react'
-import Main from '../components/section/Main'
+import Main from '../../components/section/Main'
 
 const Not = () => {
     return (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Main from '../components/section/Main';
+import Main from '../../components/section/Main';
 
 const Home = () => {
     const [token, setToken] = useState(false);
