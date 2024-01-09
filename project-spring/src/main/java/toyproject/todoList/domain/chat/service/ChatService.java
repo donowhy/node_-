@@ -8,10 +8,6 @@ import toyproject.todoList.domain.chat.entity.ChatDocument;
 import toyproject.todoList.domain.chat.repository.ChatRepository;
 import toyproject.todoList.domain.chat.service.dto.ChatRequest;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -23,7 +19,7 @@ public class ChatService {
     public void recordHistory(ChatRequest request) {
 
         ChatDocument chatDocument = ChatDocument.builder()
-                .roomIdx(request.getRoomidx())
+                .roomIdx(request.getRoomId())
                 .senderName(request.getSender())
                 .msg(request.getMsg())
                 .build();

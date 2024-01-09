@@ -86,7 +86,7 @@ public class ChatRoomController {
     private ChatRequest convertToChatRequest(ChatDocument chatDocument) {
 
         return ChatRequest.builder()
-                .roomidx(chatDocument.getRoomIdx())
+                .roomId(chatDocument.getRoomIdx())
                 .sender(chatDocument.getSenderName())
                 .msg(chatDocument.getMsg())
                 .time(chatDocument.getCreatedAt())

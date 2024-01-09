@@ -14,9 +14,9 @@ import toyproject.todoList.domain.chat.service.dto.ChatRequest;
 
 
 @Slf4j
-@CrossOrigin
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "/kafka")
 public class ChatController {
 
