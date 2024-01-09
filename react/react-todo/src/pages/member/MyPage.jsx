@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import Main from "../components/section/Main";
+import Main from "../../components/section/Main";
 import base64 from 'base-64';
 
 const MyPage = () => {

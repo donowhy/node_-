@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Main from '../components/section/Main';
+import Main from '../../components/section/Main';
 
 const TodoList = () => {
     const [todos, setTodos] = useState([]);

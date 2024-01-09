@@ -1,5 +1,5 @@
 import React from 'react';
-import Main from "../components/section/Main";
+import Main from "../../components/section/Main";
 import {useNavigate} from "react-router-dom";
 
 const LogOut = () => {

@@ -20,8 +20,6 @@ X
 (src/assets/scss/section/_postDetail.scss,4\7\474b76bd3d577e77e3098dc3a143d1fefe1bfa81
 B
 src/pages/Home.jsx,4\3\430200dcc19df010a7afe234d14af8f3c4a0b33b
-S
-#src/assets/scss/section/__home.scss,a/a/aa79ed8e76504ef2653edea0ac01bca41932f2a7
 J
 src/assets/scss/style.scss,d\3\d39e1fb36fee16c5b216fceb6a4338f56ac64b69
 J
@@ -56,9 +54,19 @@ B
 src/data/header.js,2\0\20c4e7f113ba2123aab86a1eac68e3de35e7a67f
 D
 src/pages/LogOut.jsx,3\5\356cb5ba53b24abe3787a600eb665a25ce90a77b
-V
-&src/assets/scss/section/ _members.scss,9\c\9c05640c20c0d737e193848e50b800130da71f3d
 U
 %src/assets/scss/section/_members.scss,3\a\3a0baa2ffe86e2f64fa4643b23d8f495e966ae41
 H
 src/pages/MemberPage.jsx,8\d\8dfc3df5e997ce7796dd0b2aee704916237b91cd
+K
+src/pages/member/MyPage.jsx,7\0\7057abb4c6f001f476df462dc17220be1e78dc9a
+O
+src/pages/member/MemberPage.jsx,5\7\57ceff4f8c3e673aaa389cc8ec0afd00c3005424
+H
+src/pages/index/Home.jsx,8\1\81b82f34943f56ab1a12d8d3b285e3380afb95c0
+K
+src/pages/member/Member.jsx,0\b\0b5471fcda06cd5a359f5e73e1809e51ab833bef
+O
+src/pages/todo/TodoRegister.jsx,3\c\3cb11c30e7ffc1b6b7358422402382c659d4bd3a
+K
+src/pages/todo/TodoList.jsx,9\5\95f0ca7bc3bb8d78b650144d71f39e0fcb6bfb7f

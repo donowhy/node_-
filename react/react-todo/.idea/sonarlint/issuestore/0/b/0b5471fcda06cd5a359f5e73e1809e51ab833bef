@@ -1,0 +1,4 @@
+
+njavascript:S6847E"RNon-interactive elements should not be assigned mouse or keyboard event listeners.(¢Ô»¶
+{javascript:S1082E"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(¢Ô»¶
+:javascript:S6479E"Do not use Array index in keys(¢Ô»¶
