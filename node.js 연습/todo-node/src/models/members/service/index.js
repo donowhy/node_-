@@ -1,6 +1,7 @@
 import database from "../../../database";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
+
 dotenv.config();
 
 export class MemberService {
@@ -33,6 +34,10 @@ export class MemberService {
             where: {
                 id,
             },
+            include:{
+                post : true
+            }
+
         });
         console.log(member);
         console.log("method");
@@ -55,6 +60,12 @@ export class MemberService {
             members,
             count,
         };
+    }
+
+    async membersInfo () {
+        return database.member.findMany({
+            where: {},
+        });
     }
 
     async createMember(props) {

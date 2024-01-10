@@ -54,22 +54,21 @@ model member {
 }
 
 model post {
-  id          Int          @id @default(autoincrement())
-  create_time DateTime?    @db.DateTime(6)
-  update_time DateTime?    @db.DateTime(6)
-  content     String?      @db.VarChar(255)
-  title       String?      @db.VarChar(255)
+  id          Int         @id @default(autoincrement())
+  create_time DateTime?   @db.DateTime(6)
+  update_time DateTime?   @db.DateTime(6)
+  content     String?     @db.VarChar(255)
+  title       String?     @db.VarChar(255)
   member_id   Int?
   views       Int?
+  post_views  Int?
   comment     comment[]
   like_post   like_post[]
-  member      member?      @relation(fields: [member_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK83s99f4kx8oiqm3ro0sasmpww")
-  post_views  Int? 
+  member      member?     @relation(fields: [member_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK83s99f4kx8oiqm3ro0sasmpww")
   tag         tag[]
 
   @@index([member_id], map: "FK83s99f4kx8oiqm3ro0sasmpww")
 }
-
 
 model re_comment {
   id          Int       @id @default(autoincrement())
@@ -115,6 +114,19 @@ model todo_list {
   member      member?              @relation(fields: [member_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FKph20e6k3bsy42swcbrxycll4")
 
   @@index([member_id], map: "FKph20e6k3bsy42swcbrxycll4")
+}
+
+model chat_document {
+  id          Int     @id @default(autoincrement())
+  created_at  String? @db.VarChar(255)
+  msg         String? @db.VarChar(255)
+  room_idx    Int?
+  sender_name String? @db.VarChar(255)
+}
+
+model chat_room {
+  id      Int     @id @default(autoincrement())
+  room_id String? @db.VarChar(255)
 }
 
 enum todo_list_important {

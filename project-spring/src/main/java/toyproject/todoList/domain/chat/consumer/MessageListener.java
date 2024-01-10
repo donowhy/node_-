@@ -20,9 +20,7 @@ public class MessageListener {
             groupId = KafkaConstants.GROUP_ID
     )
     public void listen(ChatRequest message) {
-        log.info("sending via kafka listener..");
         template.convertAndSend("/topic/group/" + message.getRoomId(), message);
-        log.info(" url : /topic/group/{}",message.getRoomId());
     }
 
 }

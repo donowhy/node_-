@@ -1,7 +1,0 @@
-
-jjavascript:S1481"BRemove the declaration of the unused 'setStartDateParam' variable.(äÙ”Áùÿÿÿÿ8ŞÒÅ´Î1
-gjavascript:S1854"?Remove this useless assignment to variable "setStartDateParam".(äÙ”Áùÿÿÿÿ8ßÒÅ´Î1
-cjavascript:S1481"@Remove the declaration of the unused 'setEndDateParam' variable.(â–ìİ8ßÒÅ´Î1
-`javascript:S1854"=Remove this useless assignment to variable "setEndDateParam".(â–ìİ8ßÒÅ´Î1
-ujavascript:S6847g"RNon-interactive elements should not be assigned mouse or keyboard event listeners.(ÎæÌˆ8ßÒÅ´Î1
-‚javascript:S1082g"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(ÎæÌˆ8ßÒÅ´Î1

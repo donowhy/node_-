@@ -11,9 +11,6 @@ export class TodoService {
     // TodoService의 createTodo 메서드 수정
     async createTodo(props, memberId) {
         const member = await this.memberService.findMemberById(memberId);
-        console.log("11111111111111");
-        console.log(props);
-        console.log("11111111111111");
         const newTodo = await database.todo_list.create({
             data: {
                 content: props.content,

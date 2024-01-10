@@ -3,7 +3,6 @@ import { pagination } from "../../../middleware";
 
 import { MemberDto } from "../dto";
 import { MemberService } from "../service";
-import { log } from "../../../middleware";
 
 // Router
 class MemberController {
@@ -21,7 +20,8 @@ class MemberController {
 
     // 라우터 init
     init() {
-        this.router.get("/", pagination, this.getMembers.bind(this));
+        this.router.get("", pagination, this.getMembers.bind(this));
+        this.router.get("/all", this.membersInfo.bind(this));
         this.router.get("/detail/:id", this.getMember.bind(this));
         this.router.patch("/nickname", this.changeNickname.bind(this));
         this.router.patch("/password", this.changePassword.bind(this));
@@ -31,7 +31,7 @@ class MemberController {
 
     async getMembers(req, res, next) {
         try {
-            const { members: members, count } =
+            const { members : members, count } =
                 await this.memberService.findMembers({
                     skip: req.skip,
                     take: req.take,
@@ -45,6 +45,15 @@ class MemberController {
             next(err);
         }
     }
+
+    async membersInfo() {
+        try {
+            return await this.memberService.membersInfo();
+        }catch (err) {
+            console.log(err)
+        }
+    }
+
 
     async getMember(req, res, next) {
         try {

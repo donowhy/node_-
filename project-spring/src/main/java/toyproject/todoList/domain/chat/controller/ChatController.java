@@ -25,7 +25,6 @@ public class ChatController {
 
     @PostMapping(value = "/publish/{roomId}")
     public void sendMessage(@PathVariable("roomId") Long roomId, @RequestBody ChatRequest message) {
-        log.info("Produce message : " + message.toString());
         try {
             kafkaTemplate.send(KafkaConstants.KAFKA_TOPIC, message).get();
             chatService.recordHistory(message);
@@ -36,8 +35,6 @@ public class ChatController {
     @MessageMapping("/sendMessage/{roomId}")
     @SendTo("/topic/group/{roomId}")
     public ChatRequest broadcastGroupMessage(@Payload ChatRequest message, @DestinationVariable String roomId) {
-        log.info("polling via kafka");
-        //Sending this message to all the subscribers of this room
         return message;
     }
 }
