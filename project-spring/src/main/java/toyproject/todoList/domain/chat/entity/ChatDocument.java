@@ -1,9 +1,6 @@
 package toyproject.todoList.domain.chat.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +18,8 @@ public class ChatDocument {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer roomIdx;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ChatRoom chatRoom;
 
     private String senderName;
 
@@ -31,8 +29,9 @@ public class ChatDocument {
             DateTimeFormatter.ofPattern("MM월 dd일 a hh:mm", Locale.KOREAN));
 
     @Builder
-    public ChatDocument(Integer roomIdx, String senderName, String msg) {
-        this.roomIdx = roomIdx;
+    public ChatDocument(Integer id, ChatRoom chatRoom, String senderName, String msg) {
+        this.id = id;
+        this.chatRoom = chatRoom;
         this.senderName = senderName;
         this.msg = msg;
     }

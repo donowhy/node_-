@@ -73,10 +73,10 @@ public class MemberService {
         Member member = memberRepository.findByLoginId(loginRequest.getLoginId()).orElseThrow(() ->
                 new BusinessException(ErrorCode.INVALID_USER_DATA)
         );
-
-        if (!member.getPassword().equals(loginRequest.getPassword())) {
-            throw new RuntimeException();
-        }
+//
+//        if (!member.getPassword().equals(loginRequest.getPassword())) {
+//            throw new RuntimeException();
+//        }
 
         // 로그인 시 엑세스 토큰, 리프레시 토큰 발급
         String accessToken = jwtProvider.createAccessToken(member);

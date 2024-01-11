@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import toyproject.todoList.domain.chat.constants.KafkaConstants;
 import toyproject.todoList.domain.chat.service.dto.ChatRequest;
 
+import java.util.Arrays;
+
 @Slf4j
 @Component
 public class MessageListener {
@@ -21,6 +23,7 @@ public class MessageListener {
     )
     public void listen(ChatRequest message) {
         template.convertAndSend("/topic/group/" + message.getRoomId(), message);
+        log.info("Consumer Listener Message = {}", message.getMsg());
     }
 
 }
