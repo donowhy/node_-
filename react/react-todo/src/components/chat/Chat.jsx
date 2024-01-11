@@ -42,7 +42,6 @@ const Chat = () => {
 
     const onMessageReceived = (sendMsg) => {
         console.log('새로운 메시지를 받았습니다!', sendMsg);
-        const roomid = parseInt(sendMsg.roomId, 10);
         setMessages((prevMessages) => [...prevMessages, sendMsg]);
     };
 

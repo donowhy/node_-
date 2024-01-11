@@ -28,6 +28,10 @@ export const headerMenus = [
         src: "/member/my-page"
     },
     {
+        title: "CHAT ROOM",
+        src: "/chat-room"
+    },
+    {
         title: "SINGUP",
         src: "/sign-up"
     },

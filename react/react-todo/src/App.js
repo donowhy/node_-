@@ -9,7 +9,8 @@ import PostRegister from "./pages/posts/PostRegister";
 import PostDetail from "./pages/posts/PostDetail";
 import LogOut from "./pages/sign/LogOut";
 import MemberPage from "./pages/member/MemberPage";
-import Chat_Node from "./components/chat/Chat_Node";
+import Room from "./pages/Room";
+import Chat from "./components/chat/Chat";
 const TodoList  = lazy(() => import ("./pages/todo/TodoList"));
 const MyPage  = lazy(() => import ("./pages/member/MyPage"));
 const Member  = lazy(() => import ("./pages/member/Member"));
@@ -38,8 +39,10 @@ const App = () => {
                     <Route path="/member" element={<Member />} />
                     <Route path="/to-do/today" element={<TodayTodoList />} />
                     <Route path="/create-todo" element={<TodoRegister />} />
-                    <Route path="/kafka/:roomId" element={<Chat_Node />} />
+                    <Route path="/kafka/:roomId" element={<Chat />} />
                     <Route path="/logout" element={<LogOut />} />
+                    <Route path="/chat-room" element={<Room />} />
+
                 </Routes>
             </Suspense>
         </BrowserRouter>
