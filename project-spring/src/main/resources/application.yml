@@ -23,6 +23,6 @@ spring:
 
 
 jwt:
-  password: demoversiondemoversiondemoversiondemoversion
+  password: demoversiondemoversiondemoversiondemoversiondemoversiondemoversiondemoversiondemoversion
   atk: 86400000 # 24 * 60 * 60 * 1000L; ???? ??? ?
   rtk: 2592000000 # 30 * 24 * 60 * 60 * 1000L; ???? ??? ?

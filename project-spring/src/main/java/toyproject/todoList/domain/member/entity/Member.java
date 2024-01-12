@@ -41,7 +41,6 @@ public class Member extends BaseTimeEntity {
 
     private String refreshToken;
 
-    @NotBlank
     private Boolean openPrivacy;
 
     @NotBlank
@@ -60,7 +59,8 @@ public class Member extends BaseTimeEntity {
     private List<ReComment> reComments = new ArrayList<>();
 
     @Builder
-    public Member(String password, String email,  String nickname, String refreshToken, Boolean openPrivacy, String loginId) {
+    public Member(Integer id, String password, String email,  String nickname, String refreshToken, Boolean openPrivacy, String loginId) {
+        this.id = id;
         this.password = password;
         this.email = email;
         this.role = Role.USER;

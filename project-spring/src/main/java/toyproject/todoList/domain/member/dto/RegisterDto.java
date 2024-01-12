@@ -29,5 +29,8 @@ public class RegisterDto {
     @NotBlank(message = "닉네임은 필수 입력값입니다.")
     private String nickname;
 
+    public void setEmail(String s) {
+        this.email =s;
+    }
 }
 

@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import lombok.Getter;
 
 @Getter
-public enum ErrorCode extends Throwable {
+public enum ErrorCode {
 
     TEST(HttpStatus.INTERNAL_SERVER_ERROR, "001", "exception test"),
     NOT_EXISTS_DATA(HttpStatus.NOT_FOUND, "002", "존재하지 않는 데이터입니다."),

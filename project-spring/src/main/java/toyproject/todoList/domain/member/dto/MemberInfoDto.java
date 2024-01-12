@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MemberInfo {
+public class MemberInfoDto {
 
     private String email;
     private String nickname;
@@ -25,14 +25,14 @@ public class MemberInfo {
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    static class PostDto {
+    public static class PostDto {
         private String title;
         private int likes;
         private int views;
     }
 
-    public static MemberInfo from(Member member) {
-        return MemberInfo.builder()
+    public static MemberInfoDto from(Member member) {
+        return MemberInfoDto.builder()
                 .email(member.getEmail())
                 .nickname(member.getNickname())
                 .loginId(member.getLoginId())

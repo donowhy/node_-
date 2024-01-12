@@ -25,6 +25,37 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final JwtProvider jwtProvider;
 
+    // 회원 정보 조회
+    public MemberResponse getMemberInfo(Integer myId, Integer memberId) throws Exception {
+        Member member = memberRepository.findById(myId).orElseThrow(() ->
+                new BusinessException(ErrorCode.NOT_EXISTS_USER_ID)
+        );
+
+        Member findMember = memberRepository.findById(memberId).orElseThrow(() ->
+                new BusinessException(ErrorCode.NOT_EXISTS_USER_ID)
+        );
+
+        ArrayList<MemberResponse.PostDto> postDtos = new ArrayList<>();
+        List<Post> posts = memberRepository.findPosts(findMember.getId());
+        for (Post post : posts) {
+            postDtos.add(MemberResponse.PostDto.builder()
+                    .title(post.getTitle())
+                    .likes(post.getLikes().size())
+                    .views(post.getViews())
+                    .build());
+        }
+
+
+
+        return MemberResponse.builder()
+                .nickname(findMember.getNickname())
+                .postsCount(memberRepository.postsCounter(findMember.getId()))
+                .commentsCount(memberRepository.commentsCounter(findMember.getId()))
+                .postDtoList(postDtos)
+                .build();
+
+    }
+
     // 회원 가입
     public void save(RegisterDto registerDto) {
 
@@ -41,7 +72,7 @@ public class MemberService {
 
 
     // 유저 정보 조회
-    public MemberInfo getMyInfo(Integer id) {
+    public MemberInfoDto getMyInfo(Integer id) {
         Member member = memberRepository.findById(id).orElseThrow(() ->
                 new BusinessException(ErrorCode.NOT_EXISTS_USER_ID)
         );
@@ -57,7 +88,7 @@ public class MemberService {
                     .build());
         }
 
-        return MemberInfo.builder()
+        return MemberInfoDto.builder()
                 .email(member.getEmail())
                 .nickname(member.getNickname())
                 .loginId(member.getLoginId())
@@ -157,46 +188,5 @@ public class MemberService {
         member.setOpenPrivacy(!member.getOpenPrivacy());
     }
 
-    // 회원 정보 조회
-    public MemberResponse getMemberInfo(Integer myId, Integer memberId) throws Exception {
-        Member member = memberRepository.findById(myId).orElseThrow(() ->
-                new BusinessException(ErrorCode.NOT_EXISTS_USER_ID)
-        );
 
-        Member findMember = memberRepository.findById(memberId).orElseThrow(() ->
-                new BusinessException(ErrorCode.NOT_EXISTS_USER_ID)
-        );
-
-        ArrayList<MemberResponse.PostDto> postDtos = new ArrayList<>();
-        List<Post> posts = memberRepository.findPosts(findMember.getId());
-        for (Post post : posts) {
-            postDtos.add(MemberResponse.PostDto.builder()
-                            .title(post.getTitle())
-                            .likes(post.getLikes().size())
-                            .views(post.getViews())
-                    .build());
-        }
-
-
-
-        if (findMember.getOpenPrivacy()) {
-            return MemberResponse.builder()
-                    .nickname(findMember.getNickname())
-                    .postsCount(memberRepository.postsCounter(findMember.getId()))
-                    .commentsCount(memberRepository.commentsCounter(findMember.getId()))
-                    .postDtoList(postDtos)
-                    .build();
-        } else {
-            throw new BusinessException(ErrorCode.INVALID_DATA_TYPE);
-        }
-
-
-//                            .stream()
-//                            .map(post -> MemberResponse.PostDto.builder()
-//                                    .title(post.getTitle())
-//                                    .likes(post.getLikes().size())
-//                                    .views(post.getViews().size())
-//                                    .build())
-//                            .collect(Collectors.toList()))
-    }
 }

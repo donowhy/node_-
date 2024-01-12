@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Repository;
 import org.springframework.test.annotation.Rollback;
-import toyproject.todoList.domain.member.dto.MemberInfo;
+import toyproject.todoList.domain.member.dto.MemberInfoDto;
 import toyproject.todoList.domain.member.entity.Member;
 import toyproject.todoList.domain.member.repository.MemberRepository;
 import toyproject.todoList.domain.member.service.dto.MemberResponse;
@@ -77,7 +77,7 @@ class MemberServiceTest {
         when(postRepository.findAllByMember(any())).thenReturn(Collections.singletonList(post));
 
         // getMyInfo() 메서드 호출
-        MemberInfo memberInfo = memberService.getMyInfo(member.getId());
+        MemberInfoDto memberInfo = memberService.getMyInfo(member.getId());
 
         // 반환된 MemberInfo 객체 검증
         assertThat(memberInfo.getEmail()).isEqualTo(member.getEmail());
